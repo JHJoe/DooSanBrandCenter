@@ -26,6 +26,8 @@ namespace BrandCenter
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            BundleTable.EnableOptimizations = true; //이거 해줘야 iis 셋팅해줄때도 스타일이 적용됨. 
+
         }
     }
 }

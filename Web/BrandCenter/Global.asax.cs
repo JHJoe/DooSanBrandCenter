@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity.Infrastructure.Interception;
+using BrandCenter.DAL;
 
 namespace BrandCenter
 {
@@ -16,6 +18,8 @@ namespace BrandCenter
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            DbInterception.Add(new InterceptorTransientErrors());
+            DbInterception.Add(new InterceptorLogging());
         }
     }
 }
