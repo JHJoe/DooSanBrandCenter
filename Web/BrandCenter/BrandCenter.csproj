@@ -185,12 +185,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\201610210751564_InitialCreate.cs" />
-    <Compile Include="Migrations\201610210751564_InitialCreate.Designer.cs">
-      <DependentUpon>201610210751564_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="DAL\DefaultContext.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
     <Compile Include="Models\GroupTest.cs" />
@@ -199,8 +195,11 @@
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\tblCodeMaster.cs" />
     <Compile Include="Models\tblGroup.cs" />
+    <Compile Include="Models\tblGroupUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\GroupUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -249,9 +248,16 @@
     <Content Include="Views\Shared\StudentLayout.cshtml" />
     <Content Include="Views\Admin\Group.cshtml" />
     <Content Include="Views\Admin\GroupTest.cshtml" />
+    <Content Include="Views\Admin\GroupList.cshtml" />
+    <Content Include="Views\Admin\GroupUserList.cshtml" />
+    <Content Include="Views\Admin\GroupUserListSP.cshtml" />
+    <Content Include="Views\Admin\GroupUserListEDMX.cshtml" />
+    <Content Include="Views\Admin\CodeMasterListEDMXInherit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -262,9 +268,13 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610210751564_InitialCreate.resx">
-      <DependentUpon>201610210751564_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Biz\DooSan.BrandCenter.BrandCenterDBConext\DooSan.BrandCenter.BrandCenterDBConext.csproj">
+      <Project>{c8b0b745-0246-48fa-a92e-c00313c5efeb}</Project>
+      <Name>DooSan.BrandCenter.BrandCenterDBConext</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

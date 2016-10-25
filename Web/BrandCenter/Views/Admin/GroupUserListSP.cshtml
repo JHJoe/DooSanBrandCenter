@@ -1,0 +1,61 @@
+﻿@*@model PagedList.IPagedList<BrandCenter.ViewModels.GroupUser>
+@using PagedList.Mvc;*@
+@model List<BrandCenter.ViewModels.GroupUser>
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Group";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+
+<h2>Students</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("GroupUserListSP", "Admin", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("GroupUserId", "GroupUserListSP", new { sortOrder = ViewBag.NameSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("NAME", "GroupUserListSP", new { sortOrder = ViewBag.DateSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            USERID
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupUserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.USERID)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.GroupUserId }) |
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+@*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("GroupUserListSP",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))*@

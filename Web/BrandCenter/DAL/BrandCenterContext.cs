@@ -12,8 +12,9 @@ namespace BrandCenter.DAL
         //public SchoolContext() : base("BrandCenterContext")
         //{
         //}
-        public DbSet<tblGroup> Groups { get; set; }
-//        public DbSet<Group> Groups { get; set; }
+        public DbSet<tblGroup> tblGroup { get; set; }
+        //상속받은넘
+        //public DbSet<tblGroup> Groups { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

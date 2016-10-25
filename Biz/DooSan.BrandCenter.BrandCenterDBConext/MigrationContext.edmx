@@ -1,0 +1,560 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BrandCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCodeMaster">
+          <Key>
+            <PropertyRef Name="LARG_DIVS" />
+            <PropertyRef Name="SMLL_DIVS" />
+          </Key>
+          <Property Name="LARG_DIVS" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="SMLL_DIVS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NOTE" Type="varchar" MaxLength="1000" />
+          <Property Name="MOBILE_YN" Type="bit" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="50" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="50" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblDepartmentBuyer">
+          <Key>
+            <PropertyRef Name="BUYERNO" />
+          </Key>
+          <Property Name="BUYERNO" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DEPARTMENT_CODE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUY_TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TYPE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CHARGE" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="BUYERNAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="JOB" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="POSITION" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEL" Type="varchar" MaxLength="20" />
+          <Property Name="MOBILE" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BIGO" Type="varchar(max)" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="100" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="100" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblFiles">
+          <Key>
+            <PropertyRef Name="LINKIDX" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="LINKIDX" Type="int" Nullable="false" />
+          <Property Name="TYPE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IDX" Type="int" Nullable="false" />
+          <Property Name="LOCALPATH" Type="varchar(max)" Nullable="false" />
+          <Property Name="PYSICALPATH" Type="varchar(max)" />
+          <Property Name="FILENAME" Type="varchar(max)" Nullable="false" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="100" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="100" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="150" />
+          <Property Name="test" Type="nchar" MaxLength="10" />
+          <Property Name="test2" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblGroupMenu">
+          <Key>
+            <PropertyRef Name="GROUPID" />
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="GROUPID" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="MENUID" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="100" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="100" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblGroupUser">
+          <Key>
+            <PropertyRef Name="GroupUserId" />
+          </Key>
+          <Property Name="GroupUserId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="smallint" Nullable="false" />
+          <Property Name="GroupId" Type="smallint" Nullable="false" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.tblLogging'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="tblLogging">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="int" Nullable="false" />
+          <Property Name="MENUID" Type="varchar" MaxLength="25" />
+          <Property Name="PAGEPARAM" Type="varchar" MaxLength="300" />
+          <Property Name="EMPNO" Type="varchar" MaxLength="25" />
+          <Property Name="ACCESS_DATETIME" Type="datetime" />
+          <Property Name="USER_IP" Type="varchar" MaxLength="15" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="25" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="25" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblLoginHistory">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="int" Nullable="false" />
+          <Property Name="EMPNO" Type="varchar" MaxLength="25" />
+          <Property Name="ACCESS_DATETIME" Type="datetime" />
+          <Property Name="USER_IP" Type="varchar" MaxLength="15" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="100" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="100" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.tblMenu'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="MENUID" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="MENUNAME" Type="varchar" MaxLength="100" />
+          <Property Name="DESC" Type="varchar" MaxLength="500" />
+          <Property Name="LEVEL" Type="int" />
+          <Property Name="SORT" Type="int" />
+          <Property Name="USE_YN" Type="bit" />
+          <Property Name="DEFAULT_YN" Type="bit" />
+          <Property Name="TEAM_YN" Type="bit" />
+          <Property Name="TYPE" Type="varchar" MaxLength="25" />
+          <Property Name="PARENT_MENUID" Type="varchar" MaxLength="25" />
+          <Property Name="URL" Type="varchar" MaxLength="500" />
+          <Property Name="INPUT_USER" Type="varchar" MaxLength="50" />
+          <Property Name="INPUT_DATE" Type="datetime" />
+          <Property Name="UPDATE_USER" Type="varchar" MaxLength="50" />
+          <Property Name="UPDATE_DATE" Type="datetime" />
+        </EntityType>
+        <Function Name="SP_ADM_sGROUPMASTERTestPG" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GROUPNAME" Type="varchar" Mode="In" />
+          <Parameter Name="CURRENTPAGE" Type="int" Mode="In" />
+          <Parameter Name="PAGE_COUNT" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ADM_sGROUPUSER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GROUPID" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="BrandCenterModelStoreContainer">
+          <EntitySet Name="tblCodeMaster" EntityType="Self.tblCodeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDepartmentBuyer" EntityType="Self.tblDepartmentBuyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFiles" EntityType="Self.tblFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroupMenu" EntityType="Self.tblGroupMenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroupUser" EntityType="Self.tblGroupUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLoginHistory" EntityType="Self.tblLoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogging" EntityType="Self.tblLogging" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblLogging].[IDX] AS [IDX], 
+    [tblLogging].[MENUID] AS [MENUID], 
+    [tblLogging].[PAGEPARAM] AS [PAGEPARAM], 
+    [tblLogging].[EMPNO] AS [EMPNO], 
+    [tblLogging].[ACCESS_DATETIME] AS [ACCESS_DATETIME], 
+    [tblLogging].[USER_IP] AS [USER_IP], 
+    [tblLogging].[INPUT_USER] AS [INPUT_USER], 
+    [tblLogging].[INPUT_DATE] AS [INPUT_DATE], 
+    [tblLogging].[UPDATE_USER] AS [UPDATE_USER], 
+    [tblLogging].[UPDATE_DATE] AS [UPDATE_DATE]
+    FROM [dbo].[tblLogging] AS [tblLogging]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblMenu" EntityType="Self.tblMenu" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblMenu].[MENUID] AS [MENUID], 
+    [tblMenu].[MENUNAME] AS [MENUNAME], 
+    [tblMenu].[DESC] AS [DESC], 
+    [tblMenu].[LEVEL] AS [LEVEL], 
+    [tblMenu].[SORT] AS [SORT], 
+    [tblMenu].[USE_YN] AS [USE_YN], 
+    [tblMenu].[DEFAULT_YN] AS [DEFAULT_YN], 
+    [tblMenu].[TEAM_YN] AS [TEAM_YN], 
+    [tblMenu].[TYPE] AS [TYPE], 
+    [tblMenu].[PARENT_MENUID] AS [PARENT_MENUID], 
+    [tblMenu].[URL] AS [URL], 
+    [tblMenu].[INPUT_USER] AS [INPUT_USER], 
+    [tblMenu].[INPUT_DATE] AS [INPUT_DATE], 
+    [tblMenu].[UPDATE_USER] AS [UPDATE_USER], 
+    [tblMenu].[UPDATE_DATE] AS [UPDATE_DATE]
+    FROM [dbo].[tblMenu] AS [tblMenu]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BrandCenterModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Desc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="test" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GroupId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="test2" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGroupUser">
+          <Key>
+            <PropertyRef Name="GroupUserId" />
+          </Key>
+          <Property Name="GroupUserId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int16" Nullable="false" />
+          <Property Name="GroupId" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BrandCenterEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" />
+          <EntitySet Name="tblGroupUser" EntityType="Self.tblGroupUser" />
+          <FunctionImport Name="SP_ADM_sGROUPMASTERTestPG" ReturnType="Collection(BrandCenterModel.SP_ADM_sGROUPMASTERTestPG_Result)">
+            <Parameter Name="GROUPNAME" Mode="In" Type="String" />
+            <Parameter Name="CURRENTPAGE" Mode="In" Type="Int32" />
+            <Parameter Name="PAGE_COUNT" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ADM_sGROUPUSER" ReturnType="Collection(BrandCenterModel.SP_ADM_sGROUPUSER_Result)">
+          <Parameter Name="GROUPID" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="tblCodeMaster" EntityType="BrandCenterModel.tblCodeMaster" />
+          <EntitySet Name="tblDepartmentBuyer" EntityType="BrandCenterModel.tblDepartmentBuyer" />
+          <EntitySet Name="tblFiles" EntityType="BrandCenterModel.tblFiles" />
+          <EntitySet Name="tblGroupMenu" EntityType="BrandCenterModel.tblGroupMenu" />
+          <EntitySet Name="tblLogging" EntityType="BrandCenterModel.tblLogging" />
+          <EntitySet Name="tblLoginHistory" EntityType="BrandCenterModel.tblLoginHistory" />
+          <EntitySet Name="tblMenu" EntityType="BrandCenterModel.tblMenu" />
+        </EntityContainer>
+        <ComplexType Name="SP_ADM_sGROUPMASTERTestPG_Result">
+          <Property Type="Int64" Name="RowNum" Nullable="true" />
+          <Property Type="Int64" Name="Row" Nullable="true" />
+          <Property Type="Int16" Name="GroupId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Desc" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="test" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="test3" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="TOTAL_ROW_COUNT" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_ADM_sGROUPUSER_Result">
+          <Property Type="Int16" Name="GROUPID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="true" MaxLength="50" />
+          <Property Type="Int16" Name="USERID" Nullable="false" />
+          <Property Type="Int16" Name="GroupUserId" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblCodeMaster">
+          <Key>
+            <PropertyRef Name="LARG_DIVS" />
+            <PropertyRef Name="SMLL_DIVS" />
+            <PropertyRef Name="NAME" />
+          </Key>
+          <Property Name="LARG_DIVS" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="SMLL_DIVS" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NOTE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE_YN" Type="Boolean" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblDepartmentBuyer">
+          <Key>
+            <PropertyRef Name="BUYERNO" />
+            <PropertyRef Name="DEPARTMENT_CODE" />
+            <PropertyRef Name="BUY_TYPE" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="CHARGE" />
+            <PropertyRef Name="BUYERNAME" />
+            <PropertyRef Name="JOB" />
+            <PropertyRef Name="POSITION" />
+            <PropertyRef Name="MOBILE" />
+          </Key>
+          <Property Name="BUYERNO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="DEPARTMENT_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUY_TYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CHARGE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BUYERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JOB" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="POSITION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEL" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILE" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BIGO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblFiles">
+          <Key>
+            <PropertyRef Name="LINKIDX" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="IDX" />
+            <PropertyRef Name="LOCALPATH" />
+            <PropertyRef Name="FILENAME" />
+          </Key>
+          <Property Name="LINKIDX" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IDX" Type="Int32" Nullable="false" />
+          <Property Name="LOCALPATH" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="PYSICALPATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FILENAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblGroupMenu">
+          <Key>
+            <PropertyRef Name="GROUPID" />
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="GROUPID" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <Property Name="MENUID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblLogging">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="Int32" Nullable="false" />
+          <Property Name="MENUID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PAGEPARAM" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="EMPNO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACCESS_DATETIME" Type="DateTime" Precision="3" />
+          <Property Name="USER_IP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblLoginHistory">
+          <Key>
+            <PropertyRef Name="IDX" />
+          </Key>
+          <Property Name="IDX" Type="Int32" Nullable="false" />
+          <Property Name="EMPNO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ACCESS_DATETIME" Type="DateTime" Precision="3" />
+          <Property Name="USER_IP" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="MENUID" />
+          </Key>
+          <Property Name="MENUID" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="MENUNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DESC" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LEVEL" Type="Int32" />
+          <Property Name="SORT" Type="Int32" />
+          <Property Name="USE_YN" Type="Boolean" />
+          <Property Name="DEFAULT_YN" Type="Boolean" />
+          <Property Name="TEAM_YN" Type="Boolean" />
+          <Property Name="TYPE" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PARENT_MENUID" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UPDATE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BrandCenterModelStoreContainer" CdmEntityContainer="BrandCenterEntities">
+          <EntitySetMapping Name="tblGroup">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="test2" ColumnName="test2" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="test" ColumnName="test" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupUser">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblGroupUser">
+              <MappingFragment StoreEntitySet="tblGroupUser">
+                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ADM_sGROUPMASTERTestPG" FunctionName="BrandCenterModel.Store.SP_ADM_sGROUPMASTERTestPG">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BrandCenterModel.SP_ADM_sGROUPMASTERTestPG_Result">
+                <ScalarProperty Name="RowNum" ColumnName="RowNum" />
+                <ScalarProperty Name="Row" ColumnName="Row" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="test" ColumnName="test" />
+                <ScalarProperty Name="test3" ColumnName="test3" />
+                <ScalarProperty Name="TOTAL_ROW_COUNT" ColumnName="TOTAL_ROW_COUNT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ADM_sGROUPUSER" FunctionName="BrandCenterModel.Store.SP_ADM_sGROUPUSER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BrandCenterModel.SP_ADM_sGROUPUSER_Result">
+                <ScalarProperty Name="GROUPID" ColumnName="GROUPID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="GroupUserId" ColumnName="GroupUserId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblCodeMaster">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblCodeMaster">
+              <MappingFragment StoreEntitySet="tblCodeMaster">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="MOBILE_YN" ColumnName="MOBILE_YN" />
+                <ScalarProperty Name="NOTE" ColumnName="NOTE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="SMLL_DIVS" ColumnName="SMLL_DIVS" />
+                <ScalarProperty Name="LARG_DIVS" ColumnName="LARG_DIVS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDepartmentBuyer">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblDepartmentBuyer">
+              <MappingFragment StoreEntitySet="tblDepartmentBuyer">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="BIGO" ColumnName="BIGO" />
+                <ScalarProperty Name="MOBILE" ColumnName="MOBILE" />
+                <ScalarProperty Name="TEL" ColumnName="TEL" />
+                <ScalarProperty Name="POSITION" ColumnName="POSITION" />
+                <ScalarProperty Name="JOB" ColumnName="JOB" />
+                <ScalarProperty Name="BUYERNAME" ColumnName="BUYERNAME" />
+                <ScalarProperty Name="CHARGE" ColumnName="CHARGE" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="BUY_TYPE" ColumnName="BUY_TYPE" />
+                <ScalarProperty Name="DEPARTMENT_CODE" ColumnName="DEPARTMENT_CODE" />
+                <ScalarProperty Name="BUYERNO" ColumnName="BUYERNO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFiles">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblFiles">
+              <MappingFragment StoreEntitySet="tblFiles">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="PYSICALPATH" ColumnName="PYSICALPATH" />
+                <ScalarProperty Name="LOCALPATH" ColumnName="LOCALPATH" />
+                <ScalarProperty Name="IDX" ColumnName="IDX" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="LINKIDX" ColumnName="LINKIDX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupMenu">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblGroupMenu">
+              <MappingFragment StoreEntitySet="tblGroupMenu">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+                <ScalarProperty Name="GROUPID" ColumnName="GROUPID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLogging">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblLogging">
+              <MappingFragment StoreEntitySet="tblLogging">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="USER_IP" ColumnName="USER_IP" />
+                <ScalarProperty Name="ACCESS_DATETIME" ColumnName="ACCESS_DATETIME" />
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="PAGEPARAM" ColumnName="PAGEPARAM" />
+                <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+                <ScalarProperty Name="IDX" ColumnName="IDX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLoginHistory">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblLoginHistory">
+              <MappingFragment StoreEntitySet="tblLoginHistory">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="USER_IP" ColumnName="USER_IP" />
+                <ScalarProperty Name="ACCESS_DATETIME" ColumnName="ACCESS_DATETIME" />
+                <ScalarProperty Name="EMPNO" ColumnName="EMPNO" />
+                <ScalarProperty Name="IDX" ColumnName="IDX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenu">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblMenu">
+              <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
+                <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
+                <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
+                <ScalarProperty Name="INPUT_USER" ColumnName="INPUT_USER" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="PARENT_MENUID" ColumnName="PARENT_MENUID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="TEAM_YN" ColumnName="TEAM_YN" />
+                <ScalarProperty Name="DEFAULT_YN" ColumnName="DEFAULT_YN" />
+                <ScalarProperty Name="USE_YN" ColumnName="USE_YN" />
+                <ScalarProperty Name="SORT" ColumnName="SORT" />
+                <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+                <ScalarProperty Name="DESC" ColumnName="DESC" />
+                <ScalarProperty Name="MENUNAME" ColumnName="MENUNAME" />
+                <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="없음" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

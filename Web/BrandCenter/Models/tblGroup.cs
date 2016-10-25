@@ -1,22 +1,31 @@
-namespace BrandCenter.Models
+ï»¿namespace BrandCenter.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+
     [Table("tblGroup")]
     public partial class tblGroup
     {
-        public short Id { get; set; }
+        [Key]
+        public short GroupId { get; set; }
 
         [StringLength(50)]
         public string Name { get; set; }
 
-        [StringLength(150, ErrorMessage = "150±ÛÀÚº¸´Ù ÀÛ¾Æ¾ßÇÕ´Ï´Ù.")]
+        [StringLength(150, ErrorMessage = "150ê¸€ìë³´ë‹¤ ì‘ì•„ì•¼í•©ë‹ˆë‹¤.")]
         [Column("Desc")]
         [Display(Name = "Description")]
         public string Descript { get; set; }
+
+        [Display(Name = "Test")]
+        public string test { get; set; }
+
+        [Display(Name = "Test2")]
+        public string test2 { get; set; }
+
+
     }
 }

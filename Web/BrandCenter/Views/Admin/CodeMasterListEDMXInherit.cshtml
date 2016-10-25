@@ -1,0 +1,60 @@
+﻿@model PagedList.IPagedList<BrandCenter.Models.CodeMaster>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "CodeMasterListEDMXInherit";
+    Layout = "~/Views/Shared/StudentLayout.cshtml";
+}
+
+<h2>Students</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@using (Html.BeginForm("CodeMasterListEDMXInherit", "Admin", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Id", "CodeMasterListEDMXInherit", new { sortOrder = ViewBag.NameSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("small id", "CodeMasterListEDMXInherit", new { sortOrder = ViewBag.DateSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            Name
+        </th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LARG_DIVS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SMLL_DIVS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.LARG_DIVS }) |
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("CodeMasterListEDMXInherit",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

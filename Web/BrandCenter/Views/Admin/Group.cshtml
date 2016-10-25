@@ -1,4 +1,4 @@
-﻿@model PagedList.IPagedList<BrandCenter.Models.Group>
+﻿@model PagedList.IPagedList<BrandCenter.Models.tblGroup>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -12,7 +12,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+@using (Html.BeginForm("Group", "Admin", FormMethod.Get))
 {
     <p>
         Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
@@ -38,7 +38,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.GroupId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.Descript)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
             </td>
         </tr>
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c2b4a5c86c8403db64be32c7b7b698f" Name="Diagram1">
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCodeMaster" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblDepartmentBuyer" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblFiles" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupMenu" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblLogging" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblLoginHistory" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblMenu" Width="1.5" PointX="6.75" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

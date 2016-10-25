@@ -5,20 +5,20 @@ namespace BrandCenter.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class GroupTest : DbContext
+    public partial class GroupTest2 : DbContext
     {
-        public GroupTest()
+        public GroupTest2()
             : base("name=GroupTest")
         {
         }
 
-        public virtual DbSet<tblGroup> tblGroup { get; set; }
+        //public virtual DbSet<tblGroup> tblGroup { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<tblGroup>()
-                .Property(e => e.Name)
-                .IsUnicode(false);
+            //modelBuilder.Entity<tblGroup>()
+            //    .Property(e => e.Name)
+            //    .IsUnicode(false);
         }
     }
 }
