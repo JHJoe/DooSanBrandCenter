@@ -1,0 +1,77 @@
+﻿@model BrandCenter.ViewModels.GroupUser
+
+@{
+    if (ViewBag.IsCreate == true)
+    {
+        ViewBag.Title = "GroupUser Edit";
+    }
+    else
+    {
+        ViewBag.Title = "GroupUser Create";
+    }
+    Layout = "~/Views/Shared/TestLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>group user</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GroupUserId)
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> GroupId</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GROUPID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GROUPID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> 그룹테이블 GroupName</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> UserId</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.USERID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.USERID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> SelectBox</label>
+            <div class="col-md-10">
+
+                @Html.DropDownListFor(model => model.JobId, ViewBag.JOBSelectList as SelectList, new { @class = "form-control" })
+
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+            <div>
+                @Html.ActionLink("Back to List", "GroupUserList")
+            </div>
+
+            @section Scripts {
+                @Scripts.Render("~/bundles/jqueryval")
+            }

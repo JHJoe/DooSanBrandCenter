@@ -4,6 +4,16 @@
     ViewBag.Title = "오류";
 }
 
-<h1 class="text-danger">오류입니다.</h1>
-<h2 class="text-danger">요청을 처리하는 동안 오류가 발생했습니다.</h2>
+<h1 class="text-danger">오류</h1>
+<h2 class="text-danger">
+    요청을 처리하는 동안 오류가 발생했습니다. <br />
+    
+</h2>
+<p>
+    Error 내용 : @Model.Exception.Message
+</p>
+<input type="button" value="자세히" onclick="document.getElementById('detailError').style.display='';this.style.display = 'none';" />
+<p id="detailError" style="display:none">
+    Error 상세 : @Model.Exception.ToString()
+</p>
 

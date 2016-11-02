@@ -4,10 +4,10 @@
 
 @{
     ViewBag.Title = "Group";
-    Layout = "~/Views/Shared/StudentLayout.cshtml";
+    Layout = "~/Views/Shared/TestLayout.cshtml";
 }
 
-<h2>Students</h2>
+<h2>Test</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -38,7 +38,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.GroupId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -47,7 +47,7 @@
                 @Html.DisplayFor(modelItem => item.Descript)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
             </td>
         </tr>
     }

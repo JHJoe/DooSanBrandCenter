@@ -4,13 +4,13 @@
 
 @{
     ViewBag.Title = "Group";
-    Layout = "~/Views/Shared/StudentLayout.cshtml";
+    Layout = "~/Views/Shared/TestLayout.cshtml";
 }
 
-<h2>Students</h2>
+<h2>Group</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "GroupCreate")
 </p>
 @using (Html.BeginForm("Group", "Admin", FormMethod.Get))
 {
@@ -27,9 +27,6 @@
         <th>
             @Html.ActionLink("Name", "Group", new { sortOrder = ViewBag.DateSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
         </th>
-        <th>
-            Description
-        </th>
         <th></th>
     </tr>
 
@@ -38,16 +35,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.GroupId)
+                @Html.ActionLink(item.GroupId.ToString(), "Details", new { id = item.GroupId })
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descript)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
             </td>
         </tr>
     }
@@ -56,5 +50,5 @@
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model, page => Url.Action("Group",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))

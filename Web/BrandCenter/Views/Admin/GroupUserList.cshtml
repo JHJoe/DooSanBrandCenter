@@ -4,13 +4,13 @@
 
 @{
     ViewBag.Title = "Group";
-    Layout = "~/Views/Shared/StudentLayout.cshtml";
+    Layout = "~/Views/Shared/TestLayout.cshtml";
 }
 
-<h2>Students</h2>
+<h2>Test</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "GroupUserCreate")
 </p>
 @using (Html.BeginForm("GroupUserList", "Admin", FormMethod.Get))
 {
@@ -25,12 +25,14 @@
             @Html.ActionLink("GroupUserId", "GroupUserList", new { sortOrder = ViewBag.NameSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
+            GROUPID
+        </th>
+        <th>
             @Html.ActionLink("NAME", "GroupUserList", new { sortOrder = ViewBag.DateSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
         </th>
         <th>
             USERID
         </th>
-        <th></th>
     </tr>
 
 
@@ -38,16 +40,16 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.GroupUserId)
+                @Html.ActionLink(item.GroupUserId.ToString(), "GroupUserDetails", new { id = item.GroupUserId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GROUPID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NAME)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.USERID)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.GroupUserId }) |
             </td>
         </tr>
     }

@@ -1,0 +1,113 @@
+﻿@model BrandCenter.ViewModels.GroupUser
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/TestLayout.cshtml";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm("GroupUserDelete", "Admin", FormMethod.Post, new { id = "GroupUserDelete_form", @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GroupUserId)
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> @Html.DisplayNameFor(model => model.GROUPID)</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.GROUPID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2"> 그룹테이블 NAME</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.NAME)
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2"> USERID</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.USERID)
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "GroupUserList")
+    &nbsp;
+    @Html.ActionLink("수정", "GroupUserEdit", new { id = Model.GroupUserId, isCreate = false })
+    &nbsp;
+    <button class="btn-next" onclick="Delete(); return false;">
+        삭제
+    </button>
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script type="text/javascript">
+
+    function Delete()
+    {
+        if (!msg.confirm("Delete", "삭제하시겠습니까?"))
+        {
+            return;
+        }
+
+        $.ajax({
+            url: rooturl + "Admin/GroupDelete?" + jQuery.param({ Id: $("#GroupId").val() }),
+            type: "post",
+            async: true,
+            data: $("#GroupDelete_form").serialize(),  //{ data: "yourdata" }, //AntiForgeryToken 와 데이터 전송위해
+
+            statusCode: {
+                200: function (Data) {
+                    var result = Data.Result;
+
+                    if (result == "OK")
+                    {
+                        msg.alert("callSuccess",  "삭제 성공");
+                        location.href(rooturl + "Admin/Group");
+                    }
+                    else
+                    {
+                        msg.alertText("callFail :" +  Data.ReturnMessage );
+                    }
+
+                },
+                403: function (httpresponse) {
+                    alert("Forbidden Reuquest");
+                },
+                404: function (httpresponse) {
+                    alert("Not Found" + httpresponse.responseText);
+                },
+                400: function (httpresponse) {
+                    alert(httpresponse.responseText);
+                },
+                500: function (httpresponse) {
+                    alert(httpresponse.responseText);
+                }
+            }
+
+
+        });
+
+
+    }
+
+    </script>
+
+
+}
+
+

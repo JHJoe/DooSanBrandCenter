@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+	<HEAD>
+		<title>Confirm Message</title>
+		<meta content="Microsoft Visual Studio .NET 7.1" name="GENERATOR">
+		<meta content="JavaScript" name="vs_defaultClientScript">
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="../../Content/messagebox.css" type="text/css" rel="stylesheet">
+		<script>
+		var oMyObject = window.dialogArguments;
+		var ehr_message;
+		
+		if(oMyObject != null)
+		{
+			ehr_message = oMyObject.Message;
+		}
+		
+		function okMe()
+		{
+			window.returnValue = true;
+			window.close();
+		}
+		
+		function cancelMe()
+		{
+			window.returnValue = false;
+			window.close();
+		}
+		
+		
+
+		</script>
+	</HEAD>
+	<body bgColor="#ffffff" leftMargin="0" topMargin="0" MARGINHEIGHT="0" MARGINWIDTH="0">
+		<form id="Form1" method="post" runat="server">
+			<table height="150" cellSpacing="0" cellPadding="0" width="348" align="center" bgColor="white"
+				border="0" ID="Table1">
+				<tr>
+					<td>
+						<table cellSpacing="0" cellPadding="0" width="90%" align="center" border="0" ID="Table2">
+							<tr>
+								<td class="PageNav" width="30%"><br>
+									</td>
+								<td width="50%">&nbsp;</td>
+							</tr>
+							<tr>
+								<td colSpan="2"><br>
+								</td>
+							</tr>
+							<tr>
+								<td class="TrBodyWhite" colSpan="2">
+									<script>
+									document.write(ehr_message);
+									</script>
+								</td>
+							</tr>
+							<tr>
+								<td colSpan="2" height="10"><FONT face="±¼¸²"></FONT><FONT face="±¼¸²"></FONT><br>
+								</td>
+							</tr>
+							<tr>
+								<td colSpan="2" align="center">
+									<table cellSpacing="0" cellPadding="0" align="center" border="0" width="100%" ID="Table3">
+										<tr>
+											<td width="25%" >&nbsp;
+											</td>
+											<td  width="25%">
+												<table cellSpacing="0" cellPadding="0" align="center" border="0" ID="Table4">
+													<tr>
+														<td></td>
+														<td  width="50" class="BtnCommand" style="PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: arial"
+															border="0">&nbsp;<A onclick="okMe();" Style="cursor:hand;">Ok</A></td>
+														<td></td>
+													</tr>
+												</table>
+											</td>
+											<td  width="25%">
+												<table cellSpacing="0" cellPadding="0" align="center" border="0" ID="Table5">
+													<tr>
+														<td></td>
+														<td width="50" class="BtnCommand" style="PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; FONT-FAMILY: arial"
+															border="0">&nbsp;<A onclick="cancelMe();" Style="cursor:hand;">Cancel</A></td>
+														<td></td>
+													</tr>
+												</table>
+											</td>
+											<td  width="25%">&nbsp;
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</HTML>

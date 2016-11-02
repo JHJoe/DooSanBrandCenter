@@ -7,10 +7,11 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
-using BrandCenter.Logging;
+using DooSan.BrandCenter.FrameWork.Utils;
 
 namespace BrandCenter.DAL
 {
+//에러 테스트 용
     public class InterceptorTransientErrors : DbCommandInterceptor
     {
         private int _counter = 0;
@@ -18,16 +19,18 @@ namespace BrandCenter.DAL
 
         public override void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
+            
             bool throwTransientErrors = false;
             if (command.Parameters.Count > 0 && command.Parameters[0].Value.ToString() == "%Throw%")
             {
                 throwTransientErrors = true;
-                command.Parameters[0].Value = "%an%";
-                command.Parameters[1].Value = "%an%";
+//                command.Parameters[0].Value = "%an%";
+//                command.Parameters[1].Value = "%an%";
             }
 
             if (throwTransientErrors && _counter < 4)
             {
+                //sql trace로
                 _logger.Information("Returning transient error for command: {0}", command.CommandText);
                 _counter++;
                 interceptionContext.Exception = CreateDummySqlException();

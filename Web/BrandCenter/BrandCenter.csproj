@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DataAnnotationsExtensions.5.0.1.16\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -177,14 +181,16 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="DAL\ExpressionInterceptor.cs" />
     <Compile Include="DAL\InterceptorTransientErrors.cs" />
     <Compile Include="DAL\BrandCenterContext.cs" />
     <Compile Include="DAL\SchoolContext.cs" />
     <Compile Include="DAL\InterceptorLogging.cs" />
+    <Compile Include="Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Migrations\DisableConfiguration.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
     <Compile Include="Models\Department.cs" />
@@ -198,10 +204,16 @@
     <Compile Include="Models\tblCodeMaster.cs" />
     <Compile Include="Models\tblGroup.cs" />
     <Compile Include="Models\tblGroupUser.cs" />
+    <Compile Include="Models\tblMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\GroupUserValidator.cs" />
+    <Compile Include="Validators\GroupValidator.cs" />
     <Compile Include="ViewModel\GroupUser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Common\Alert.htm" />
+    <Content Include="Common\AlertText.htm" />
+    <Content Include="Common\Confirm.htm" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -209,6 +221,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Admin\GroupDetail.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -217,6 +230,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Common.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -245,7 +259,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
-    <Content Include="Views\Shared\StudentLayout.cshtml" />
+    <Content Include="Views\Shared\TestLayout.cshtml" />
     <Content Include="Views\Admin\Group.cshtml" />
     <Content Include="Views\Admin\GroupTest.cshtml" />
     <Content Include="Views\Admin\GroupList.cshtml" />
@@ -253,11 +267,14 @@
     <Content Include="Views\Admin\GroupUserListSP.cshtml" />
     <Content Include="Views\Admin\GroupUserListEDMX.cshtml" />
     <Content Include="Views\Admin\CodeMasterListEDMXInherit.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\GroupEdit.cshtml" />
+    <Content Include="Views\Admin\GroupUserDetails.cshtml" />
+    <Content Include="Views\Admin\GroupUserEdit.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -271,9 +288,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Biz\DooSan.BrandCenter.BrandCenterDBConext\DooSan.BrandCenter.BrandCenterDBConext.csproj">
-      <Project>{c8b0b745-0246-48fa-a92e-c00313c5efeb}</Project>
-      <Name>DooSan.BrandCenter.BrandCenterDBConext</Name>
+    <ProjectReference Include="..\..\Framework\DooSan.BrandCenter.FrameWork.Utils\DooSan.BrandCenter.FrameWork.Utils.csproj">
+      <Project>{dd774aeb-5751-4064-8039-ee9d6d262c26}</Project>
+      <Name>DooSan.BrandCenter.FrameWork.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

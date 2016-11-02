@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Data.Entity.ModelConfiguration.Conventions;
 
+    [DbConfigurationType(typeof(Migrations.DisableConfiguration))]
     public class DefaultContext : DbContext
     {
         // 컨텍스트가 응용 프로그램의 구성 파일(App.config 또는 Web.config)의 'DefaultContext' 연결 문자열을 

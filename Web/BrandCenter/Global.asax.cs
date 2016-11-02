@@ -14,11 +14,12 @@ namespace BrandCenter
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer<Models.DefaultContext>(null);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DbInterception.Add(new InterceptorTransientErrors());
+            //DbInterception.Add(new InterceptorTransientErrors());
             DbInterception.Add(new InterceptorLogging());
         }
     }

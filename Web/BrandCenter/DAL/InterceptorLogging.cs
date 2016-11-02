@@ -7,17 +7,19 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Reflection;
 using System.Linq;
-using BrandCenter.Logging;
+using DooSan.BrandCenter.FrameWork.Utils;
 
 namespace BrandCenter.DAL
 {
     public class InterceptorLogging : DbCommandInterceptor
     {
-        private ILogger _logger = new Logger();
+        //private ILogger _logger = new Logger();
         private readonly Stopwatch _stopwatch = new Stopwatch();
 
         public override void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
         {
+            SQLTraceClass.debugSQLTrace(command, true);
+
             base.ScalarExecuting(command, interceptionContext);
             _stopwatch.Restart();
         }
@@ -27,17 +29,21 @@ namespace BrandCenter.DAL
             _stopwatch.Stop();
             if (interceptionContext.Exception != null)
             {
-                _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
+                new AppException(string.Format("Error executing command: {0}", command.CommandText), interceptionContext.Exception);
+                //_logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
             }
             else
             {
-                _logger.TraceApi("SQL Database", "SchoolInterceptor.ScalarExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
+                SQLTraceClass.SQLTrace(command, true, _stopwatch.Elapsed.Ticks);
+                //_logger.TraceApi("SQL Database", "InterceptorLogging.ScalarExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.ScalarExecuted(command, interceptionContext);
         }
 
         public override void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
         {
+            SQLTraceClass.debugSQLTrace(command, true);
+
             base.NonQueryExecuting(command, interceptionContext);
             _stopwatch.Restart();
         }
@@ -47,30 +53,37 @@ namespace BrandCenter.DAL
             _stopwatch.Stop();
             if (interceptionContext.Exception != null)
             {
-                _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
+                new AppException(string.Format("Error executing command: {0}", command.CommandText), interceptionContext.Exception);
+                //_logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
             }
             else
             {
-                _logger.TraceApi("SQL Database", "SchoolInterceptor.NonQueryExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
+                SQLTraceClass.SQLTrace(command, true, _stopwatch.Elapsed.Ticks);
+                //_logger.TraceApi("SQL Database", "InterceptorLogging.NonQueryExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.NonQueryExecuted(command, interceptionContext);
         }
 
         public override void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
+            SQLTraceClass.debugSQLTrace(command, true);
+
             base.ReaderExecuting(command, interceptionContext);
             _stopwatch.Restart();
         }
         public override void ReaderExecuted(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
+
             _stopwatch.Stop();
             if (interceptionContext.Exception != null)
             {
-                _logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
+                new AppException(string.Format("Error executing command: {0}", command.CommandText), interceptionContext.Exception);
+                //_logger.Error(interceptionContext.Exception, "Error executing command: {0}", command.CommandText);
             }
             else
             {
-                _logger.TraceApi("SQL Database", "SchoolInterceptor.ReaderExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
+                SQLTraceClass.SQLTrace(command, true, _stopwatch.Elapsed.Ticks);
+                //_logger.TraceApi("SQL Database", "InterceptorLogging.ReaderExecuted", _stopwatch.Elapsed, "Command: {0}: ", command.CommandText);
             }
             base.ReaderExecuted(command, interceptionContext);
         }

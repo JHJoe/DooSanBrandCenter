@@ -14,6 +14,12 @@ namespace BrandCenter
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/Common").Include(
+            "~/Scripts/Common.js"));
+            bundles.Add(new ScriptBundle("~/bundles/Group").Include(
+            "~/Scripts/Group/GroupDetail.js"));
+            
+
             // Modernizr의 개발 버전을 사용하여 개발하고 배우십시오. 그런 다음
             // 프로덕션할 준비가 되면 http://modernizr.com 링크의 빌드 도구를 사용하여 필요한 테스트만 선택하십시오.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
