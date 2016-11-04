@@ -12,15 +12,25 @@
 <p>
     @Html.ActionLink("Create New", "GroupUserCreate")
 </p>
-@using (Html.BeginForm("GroupUserList", "Admin", FormMethod.Get))
+@using (Html.BeginForm("GroupUserList", "Admin", FormMethod.Post, new { id = "GroupUserList_form", @class = "form-horizontal", role = "form" }))
 {
+    @Html.AntiForgeryToken()
     <p>
         Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
+
+        현 페이지 유저들을 다음 그룹으로 변경:        @Html.DropDownList("GroupBulkSelect", ViewBag.GROUPSelectList as SelectList, htmlAttributes: new { @class = "form-control" })
+        <button class="btn-next" onclick="BulkUpdate(); return false;">
+            변경
+        </button>
+
     </p>
-}
+
 <table class="table">
     <tr>
+        <th>
+            <input type="checkbox" id="allCheck" onclick="checkAll(this)">
+        </th>
         <th>
             @Html.ActionLink("GroupUserId", "GroupUserList", new { sortOrder = ViewBag.NameSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })
         </th>
@@ -38,7 +48,15 @@
 
     @foreach (var item in Model)
     {
+        @Html.Hidden("hidd_GroupUserId", item.GroupUserId)
+        @Html.Hidden("hidd_GROUPID", item.GROUPID)
+        @Html.Hidden("hidd_USERID", item.USERID)
+
         <tr>
+            <td>
+                <input type="checkbox" id="checkboxList" name="checkboxList" value="@item.GroupUserId" />
+                @*@Html.CheckBox("checkboxList")*@ 
+            </td>
             <td>
                 @Html.ActionLink(item.GroupUserId.ToString(), "GroupUserDetails", new { id = item.GroupUserId })
             </td>
@@ -55,8 +73,64 @@
     }
 
 </table>
+
+}
 <br />
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
 @Html.PagedListPager(Model, page => Url.Action("GroupUserList",
     new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+
+@section Scripts {
+
+<script type="text/javascript" >
+
+
+
+    function BulkUpdate() {
+        $.ajax({
+            url: rooturl + "Admin/UserGroupListBulkUpdate"
+            , type: "post",
+            async: true,
+            data: $("#GroupUserList_form").serialize(),
+
+            statusCode: {
+                200: function (Data) {
+                    var result = Data.Result;
+
+                    if (result == "OK") {
+                        alert("성공");
+                        //msg.alert("callSuccess", "성공");
+                        location.href(rooturl + "Admin/GroupUserList");
+                    }
+                    else {
+                        alert(Data.ReturnMessage);
+                        msg.alertText("callFail :" + Data.ReturnMessage);
+                    }
+
+                },
+                403: function (httpresponse) {
+                    alert("Forbidden Reuquest");
+                },
+                404: function (httpresponse) {
+                    alert("Not Found" + httpresponse.responseText);
+                },
+                400: function (httpresponse) {
+                    alert(httpresponse.responseText);
+                },
+                500: function (httpresponse) {
+                    alert(httpresponse.responseText);
+                }
+            }
+
+
+        });
+
+    }
+
+
+</script>
+
+
+}

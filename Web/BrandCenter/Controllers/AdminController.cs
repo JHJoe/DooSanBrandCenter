@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using BrandCenter.ViewModels;
 using DooSan.BrandCenter.FrameWork.Utils;
 using System.Data.Entity.Validation;
+using BrandCenter.Helper;
 
 namespace BrandCenter.Controllers
 {
@@ -127,7 +128,7 @@ namespace BrandCenter.Controllers
 
         public ViewResult GroupUserList(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            Convert.ToInt32("d");
+            //Convert.ToInt32("d");
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -144,7 +145,7 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in dbcnxt.tblGroupUser
+            var groups = from s in dbcnxt.tblGroupUser
                            join gm in dbcnxt.tblGroup on s.GroupId equals gm.GroupId
                            select new ViewModels.GroupUser
                            {
@@ -155,18 +156,18 @@ namespace BrandCenter.Controllers
                            };
             if (!String.IsNullOrEmpty(searchString))
             {
-                students = students.Where(s => s.NAME.Contains(searchString) );
+                groups = groups.Where(s => s.NAME.Contains(searchString) );
             }
             switch (sortOrder)
             {
                 case "id_desc":
-                    students = students.OrderByDescending(s => s.GROUPID);
+                    groups = groups.OrderByDescending(s => s.GROUPID);
                     break;
                 case "Name":
-                    students = students.OrderBy(s => s.NAME);
+                    groups = groups.OrderBy(s => s.NAME);
                     break;
                 default:  // id ascending 
-                    students = students.OrderBy(s => s.GROUPID);
+                    groups = groups.OrderBy(s => s.GROUPID);
                     break;
             }
 
@@ -175,7 +176,11 @@ namespace BrandCenter.Controllers
             //jojo paging 샘플
             ViewBag.Page = pageNumber;
 
-            return View(students.ToPagedList(pageNumber, pageSize));
+            ViewBag.GROUPSelectList = DropDownHelper.GetGroupDropDownList(dbcnxt);
+
+            var pageList = groups.ToPagedList(pageNumber, pageSize);
+
+            return View(pageList);
         }
         /*
         //edmx 이용해서 해본건데 역시나 코드 퍼스트 구조에서 같이 돌릴려니 손이 겁나 많이 감. 자동 생성 클래스인걸
@@ -739,7 +744,51 @@ namespace BrandCenter.Controllers
         }
 
 
+        // POST: UserGroupListBulkUpdate
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserGroupListBulkUpdate(FormCollection fromcoll)
+        {
 
+
+            try
+            {
+                using (var tran = dbcnxt.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        string selectedGroup = fromcoll["GroupBulkSelect"]; //Request.Form["GroupBulkSelect"].ToString();
+                        string[] checkboxList = fromcoll["checkboxList"].Split(',');
+                        foreach (string id in checkboxList)
+                        {
+                            var groupuser = dbcnxt.tblGroupUser.Find(int.Parse(id));
+
+                            groupuser.GroupId = short.Parse(selectedGroup);
+                            //dbcnxt.tblGroupUser.Remove(group);
+                        }
+                        dbcnxt.SaveChanges();
+                        tran.Commit();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        tran.Rollback();
+                        throw e;
+                    }
+                }
+
+                return Json(new { Result = "OK" });
+            }
+            catch (Exception ex)
+            {
+                //Log the error 
+                ModelState.AddModelError("", ex.Message);
+
+                return Json(new { Result = "Fail", ReturnMessage = ex.Message });
+            }
+        }
+
+
+        
 
 
 

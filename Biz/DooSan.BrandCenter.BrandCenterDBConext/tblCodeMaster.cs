@@ -23,5 +23,7 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
         public Nullable<System.DateTime> INPUT_DATE { get; set; }
         public string UPDATE_USER { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
+        public Nullable<byte> SORTORDER { get; set; }
+        public string JOBID { get; set; }
     }
 }

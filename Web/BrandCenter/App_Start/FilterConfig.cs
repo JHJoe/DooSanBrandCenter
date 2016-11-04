@@ -10,13 +10,12 @@ namespace BrandCenter
         {
             filters.Add(new GlobalHandleErrorAttribute(), 2);
 
+            //shared의 에러페이지로 전달
             //filters.Add(new HandleErrorAttribute
             //{
             //    View = "Error"
             //}, 1);
 
-//            filters.Add(new HandleErrorAttribute
-//            { View = "Error" }, 1);
 
         }
     }

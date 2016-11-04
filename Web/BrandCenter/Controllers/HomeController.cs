@@ -8,14 +8,6 @@ namespace BrandCenter.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Error()
-        {
-            //var feature = this.HttpContext.Features.Get<IExceptionHandlerFeature>();
-            //return View("~/Views/Shared/Error.cshtml", feature?.Error);
-
-
-            return View();
-        }
 
         public ActionResult Index()
         {

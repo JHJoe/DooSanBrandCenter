@@ -5,6 +5,244 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BrandCenterModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.tb_AdditionalJob'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="tb_AdditionalJob">
+          <Key>
+            <PropertyRef Name="LoginID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="DeptCode" />
+          </Key>
+          <Property Name="LoginID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TypeCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SeqNo" Type="varchar" MaxLength="4" />
+          <Property Name="DeptCode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="RankCode" Type="varchar" MaxLength="50" />
+          <Property Name="DutyCode" Type="varchar" MaxLength="5" />
+          <Property Name="DutyType" Type="nvarchar" MaxLength="5" />
+          <Property Name="SubJobCode" Type="nvarchar" MaxLength="45" />
+          <Property Name="Add_Ent_Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="DisplayYN" Type="nchar" MaxLength="1" />
+          <Property Name="StartDate" Type="nvarchar" MaxLength="34" />
+          <Property Name="EndDate" Type="nvarchar" MaxLength="34" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="DutyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Stamp" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpDate" Type="nvarchar" MaxLength="34" />
+        </EntityType>
+        <EntityType Name="tb_Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LangCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
+          <Property Name="sortOrder" Type="int" />
+          <Property Name="DisplayYN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="FC_Target_YN" Type="nchar" MaxLength="1" />
+          <Property Name="SPSiteName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_Dept">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+          </Key>
+          <Property Name="DeptCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptOrder" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentDeptCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptEmail" Type="nvarchar" MaxLength="80" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayYN" Type="nvarchar" MaxLength="50" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Manager" Type="nvarchar" MaxLength="50" />
+          <Property Name="DeptShortName" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeptFullName" Type="nvarchar" MaxLength="300" />
+          <Property Name="RootOrgUnitID" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrgUnitID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoopisDeptCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpperOrgUnitID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.TB_DEPT_EX'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="TB_DEPT_EX">
+          <Key>
+            <PropertyRef Name="DEPTCODE" />
+            <PropertyRef Name="RECEIPT_UNIT_CODE" />
+            <PropertyRef Name="APPROVAL_UNIT_CODE" />
+            <PropertyRef Name="RECEIVABLE" />
+            <PropertyRef Name="APPROVABLE" />
+            <PropertyRef Name="FC_TARGET_YN" />
+          </Key>
+          <Property Name="DEPTCODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BGCODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="RECEIPT_UNIT_CODE" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="APPROVAL_UNIT_CODE" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="RECEIVABLE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPROVABLE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FC_TARGET_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ORG_VIEW" Type="char" MaxLength="1" />
+          <Property Name="UNIT_FULL_CODE" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UNIT_FULL_NAME" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ENG_UNIT_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="SHORT_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="DSCR" Type="nvarchar" MaxLength="200" />
+          <Property Name="SIMPLENM" Type="nvarchar" MaxLength="40" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.tb_DeptLang'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="tb_DeptLang">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="DeptCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LangCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tb_Duty">
+          <Key>
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="DutyCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LangCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DutyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="RegisteredDate" Type="nchar" MaxLength="10" />
+          <Property Name="ClosedDate" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tb_Rank">
+          <Key>
+            <PropertyRef Name="RankCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="RankCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LangCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RankName" Type="nvarchar" MaxLength="80" />
+          <Property Name="PrgType" Type="nvarchar" MaxLength="50" />
+          <Property Name="RankSort" Type="int" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="RegisteredDate" Type="nchar" MaxLength="10" />
+          <Property Name="ClosedDate" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tb_User">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="EmpID" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrentEmpID" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="80" />
+          <Property Name="CompanyCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="MainDeptCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDT" Type="nchar" MaxLength="10" />
+          <Property Name="EndDate" Type="nchar" MaxLength="10" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="100" />
+          <Property Name="DisplayYN" Type="nchar" MaxLength="10" />
+          <Property Name="DutyCode" Type="varchar" MaxLength="10" />
+          <Property Name="JobCode" Type="varchar" MaxLength="10" />
+          <Property Name="RankCode" Type="varchar" MaxLength="10" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="HomePhone" Type="nvarchar" MaxLength="200" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="200" />
+          <Property Name="ExtensionNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="Sort" Type="nvarchar" MaxLength="50" />
+          <Property Name="Interface" Type="nchar" MaxLength="1" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="ObjectDetailCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObjectCategory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Person_ID" Type="nvarchar" MaxLength="15" />
+          <Property Name="ExtensionNumber2" Type="nvarchar" MaxLength="50" />
+          <Property Name="DooDreamYN" Type="nchar" MaxLength="1" />
+          <Property Name="etcUser" Type="nchar" MaxLength="1" />
+          <Property Name="classify" Type="nchar" MaxLength="2" />
+          <Property Name="JOB_FULL_NM" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMP_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="MyLang" Type="nvarchar" MaxLength="2" />
+          <Property Name="Location" Type="nvarchar" MaxLength="300" />
+          <Property Name="JOB_DETAIL" Type="nvarchar" MaxLength="200" />
+          <Property Name="HIDE_YellowPage_YN" Type="nchar" MaxLength="1" />
+          <Property Name="DOC_CHECK_YN" Type="nvarchar" MaxLength="1" />
+          <Property Name="Ver" Type="int" />
+          <Property Name="PersonnelAreaCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrgUnitID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoopisDeptCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--생성 중 오류 발생:
+경고 6002: 테이블/뷰 'BrandCenter.dbo.TB_USER_EX'에 기본 키가 정의되지 않았습니다. 키가 유추되었고 읽기 전용 테이블/뷰로 정의되었습니다.-->
+        <EntityType Name="TB_USER_EX">
+          <Key>
+            <PropertyRef Name="LOGINID" />
+            <PropertyRef Name="LOCK" />
+            <PropertyRef Name="DEPUTY_YN" />
+            <PropertyRef Name="APPROVAL_ARRIVAL_YN" />
+            <PropertyRef Name="APPROVAL_ARRIVAL_MEDIUM" />
+            <PropertyRef Name="APPROVAL_COMPLETE_YN" />
+            <PropertyRef Name="APPROVAL_COMPLETE_MEDIUM" />
+            <PropertyRef Name="APPROVAL_REVIEW_YN" />
+            <PropertyRef Name="APPROVAL_UNIT_CODE" />
+            <PropertyRef Name="RECEIPT_UNIT_CODE" />
+            <PropertyRef Name="EDITER_MEDIUM" />
+            <PropertyRef Name="FILE_ATTACH_MEDIUM" />
+            <PropertyRef Name="ORG_LANGUAGE" />
+            <PropertyRef Name="ORG_VIEW" />
+            <PropertyRef Name="FC_TARGET_YN" />
+          </Key>
+          <Property Name="LOGINID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LOCK" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="DEPUTY_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="DEPUTY_FROM_DT" Type="datetime" />
+          <Property Name="DEPUTY_TO_DT" Type="datetime" />
+          <Property Name="DEPUTY_CODE" Type="char" MaxLength="50" />
+          <Property Name="DEPUTY_NAME" Type="char" MaxLength="100" />
+          <Property Name="APPROVAL_ARRIVAL_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPROVAL_ARRIVAL_MEDIUM" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="APPROVAL_COMPLETE_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPROVAL_COMPLETE_MEDIUM" Type="char" MaxLength="64" Nullable="false" />
+          <Property Name="APPROVAL_REVIEW_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="APPROVAL_REVIEW_MEDIUM" Type="char" MaxLength="64" />
+          <Property Name="APPROVAL_UNIT_CODE" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="RECEIPT_UNIT_CODE" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="APPROVER_CODE" Type="char" MaxLength="128" />
+          <Property Name="MESSENGER_USAGE_STAT" Type="char" MaxLength="1" />
+          <Property Name="EDITER_MEDIUM" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FILE_ATTACH_MEDIUM" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ORG_LANGUAGE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ORG_VIEW" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="FC_TARGET_YN" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="ABSENT_REASON" Type="nvarchar" MaxLength="512" />
+          <Property Name="APPROVAL_DEFAULT_FORM_YN" Type="char" MaxLength="1" />
+          <Property Name="APPROVAL_DEFAULT_FORM_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DISPLAY_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="DISPLAY_ENG_NAME" Type="nvarchar" MaxLength="200" />
+          <Property Name="DISPLAY_MAIL_SENDER_NAME" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tb_UserLang">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LangCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserLName" Type="nvarchar" MaxLength="200" />
+          <Property Name="UserFName" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="tblButton">
+          <Key>
+            <PropertyRef Name="ButtonId" />
+          </Key>
+          <Property Name="ButtonId" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ButtonName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="tblCodeMaster">
           <Key>
             <PropertyRef Name="LARG_DIVS" />
@@ -15,10 +253,12 @@
           <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="NOTE" Type="varchar" MaxLength="1000" />
           <Property Name="MOBILE_YN" Type="bit" />
+          <Property Name="SORTORDER" Type="tinyint" />
           <Property Name="INPUT_USER" Type="varchar" MaxLength="50" />
           <Property Name="INPUT_DATE" Type="datetime" />
           <Property Name="UPDATE_USER" Type="varchar" MaxLength="50" />
           <Property Name="UPDATE_DATE" Type="datetime" />
+          <Property Name="JOBID" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblDepartmentBuyer">
           <Key>
@@ -66,6 +306,15 @@
           <Property Name="Desc" Type="nvarchar" MaxLength="150" />
           <Property Name="test" Type="nchar" MaxLength="10" />
           <Property Name="test2" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="tblGroupButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="smallint" Nullable="false" />
+          <Property Name="MENUID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ButtonId" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="tblGroupMenu">
           <Key>
@@ -148,13 +397,100 @@
           <Parameter Name="GROUPID" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="BrandCenterModelStoreContainer">
+          <EntitySet Name="tb_Company" EntityType="Self.tb_Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Dept" EntityType="Self.tb_Dept" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Duty" EntityType="Self.tb_Duty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_Rank" EntityType="Self.tb_Rank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_User" EntityType="Self.tb_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_UserLang" EntityType="Self.tb_UserLang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblButton" EntityType="Self.tblButton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCodeMaster" EntityType="Self.tblCodeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDepartmentBuyer" EntityType="Self.tblDepartmentBuyer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblFiles" EntityType="Self.tblFiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGroupButton" EntityType="Self.tblGroupButton" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupMenu" EntityType="Self.tblGroupMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGroupUser" EntityType="Self.tblGroupUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLoginHistory" EntityType="Self.tblLoginHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_AdditionalJob" EntityType="Self.tb_AdditionalJob" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_AdditionalJob].[LoginID] AS [LoginID], 
+    [tb_AdditionalJob].[TypeCode] AS [TypeCode], 
+    [tb_AdditionalJob].[SeqNo] AS [SeqNo], 
+    [tb_AdditionalJob].[DeptCode] AS [DeptCode], 
+    [tb_AdditionalJob].[RankCode] AS [RankCode], 
+    [tb_AdditionalJob].[DutyCode] AS [DutyCode], 
+    [tb_AdditionalJob].[DutyType] AS [DutyType], 
+    [tb_AdditionalJob].[SubJobCode] AS [SubJobCode], 
+    [tb_AdditionalJob].[Add_Ent_Code] AS [Add_Ent_Code], 
+    [tb_AdditionalJob].[Interface] AS [Interface], 
+    [tb_AdditionalJob].[DisplayYN] AS [DisplayYN], 
+    [tb_AdditionalJob].[StartDate] AS [StartDate], 
+    [tb_AdditionalJob].[EndDate] AS [EndDate], 
+    [tb_AdditionalJob].[UpdateDate] AS [UpdateDate], 
+    [tb_AdditionalJob].[DutyName] AS [DutyName], 
+    [tb_AdditionalJob].[RankName] AS [RankName], 
+    [tb_AdditionalJob].[Stamp] AS [Stamp], 
+    [tb_AdditionalJob].[ExpDate] AS [ExpDate]
+    FROM [dbo].[tb_AdditionalJob] AS [tb_AdditionalJob]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TB_DEPT_EX" EntityType="Self.TB_DEPT_EX" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TB_DEPT_EX].[DEPTCODE] AS [DEPTCODE], 
+    [TB_DEPT_EX].[BGCODE] AS [BGCODE], 
+    [TB_DEPT_EX].[RECEIPT_UNIT_CODE] AS [RECEIPT_UNIT_CODE], 
+    [TB_DEPT_EX].[APPROVAL_UNIT_CODE] AS [APPROVAL_UNIT_CODE], 
+    [TB_DEPT_EX].[RECEIVABLE] AS [RECEIVABLE], 
+    [TB_DEPT_EX].[APPROVABLE] AS [APPROVABLE], 
+    [TB_DEPT_EX].[FC_TARGET_YN] AS [FC_TARGET_YN], 
+    [TB_DEPT_EX].[ORG_VIEW] AS [ORG_VIEW], 
+    [TB_DEPT_EX].[UNIT_FULL_CODE] AS [UNIT_FULL_CODE], 
+    [TB_DEPT_EX].[UNIT_FULL_NAME] AS [UNIT_FULL_NAME], 
+    [TB_DEPT_EX].[ENG_UNIT_NAME] AS [ENG_UNIT_NAME], 
+    [TB_DEPT_EX].[SHORT_NAME] AS [SHORT_NAME], 
+    [TB_DEPT_EX].[DSCR] AS [DSCR], 
+    [TB_DEPT_EX].[SIMPLENM] AS [SIMPLENM]
+    FROM [dbo].[TB_DEPT_EX] AS [TB_DEPT_EX]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tb_DeptLang" EntityType="Self.tb_DeptLang" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_DeptLang].[DeptCode] AS [DeptCode], 
+    [tb_DeptLang].[LangCode] AS [LangCode], 
+    [tb_DeptLang].[DeptName] AS [DeptName]
+    FROM [dbo].[tb_DeptLang] AS [tb_DeptLang]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TB_USER_EX" EntityType="Self.TB_USER_EX" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TB_USER_EX].[LOGINID] AS [LOGINID], 
+    [TB_USER_EX].[LOCK] AS [LOCK], 
+    [TB_USER_EX].[DEPUTY_YN] AS [DEPUTY_YN], 
+    [TB_USER_EX].[DEPUTY_FROM_DT] AS [DEPUTY_FROM_DT], 
+    [TB_USER_EX].[DEPUTY_TO_DT] AS [DEPUTY_TO_DT], 
+    [TB_USER_EX].[DEPUTY_CODE] AS [DEPUTY_CODE], 
+    [TB_USER_EX].[DEPUTY_NAME] AS [DEPUTY_NAME], 
+    [TB_USER_EX].[APPROVAL_ARRIVAL_YN] AS [APPROVAL_ARRIVAL_YN], 
+    [TB_USER_EX].[APPROVAL_ARRIVAL_MEDIUM] AS [APPROVAL_ARRIVAL_MEDIUM], 
+    [TB_USER_EX].[APPROVAL_COMPLETE_YN] AS [APPROVAL_COMPLETE_YN], 
+    [TB_USER_EX].[APPROVAL_COMPLETE_MEDIUM] AS [APPROVAL_COMPLETE_MEDIUM], 
+    [TB_USER_EX].[APPROVAL_REVIEW_YN] AS [APPROVAL_REVIEW_YN], 
+    [TB_USER_EX].[APPROVAL_REVIEW_MEDIUM] AS [APPROVAL_REVIEW_MEDIUM], 
+    [TB_USER_EX].[APPROVAL_UNIT_CODE] AS [APPROVAL_UNIT_CODE], 
+    [TB_USER_EX].[RECEIPT_UNIT_CODE] AS [RECEIPT_UNIT_CODE], 
+    [TB_USER_EX].[APPROVER_CODE] AS [APPROVER_CODE], 
+    [TB_USER_EX].[MESSENGER_USAGE_STAT] AS [MESSENGER_USAGE_STAT], 
+    [TB_USER_EX].[EDITER_MEDIUM] AS [EDITER_MEDIUM], 
+    [TB_USER_EX].[FILE_ATTACH_MEDIUM] AS [FILE_ATTACH_MEDIUM], 
+    [TB_USER_EX].[ORG_LANGUAGE] AS [ORG_LANGUAGE], 
+    [TB_USER_EX].[ORG_VIEW] AS [ORG_VIEW], 
+    [TB_USER_EX].[FC_TARGET_YN] AS [FC_TARGET_YN], 
+    [TB_USER_EX].[ABSENT_REASON] AS [ABSENT_REASON], 
+    [TB_USER_EX].[APPROVAL_DEFAULT_FORM_YN] AS [APPROVAL_DEFAULT_FORM_YN], 
+    [TB_USER_EX].[APPROVAL_DEFAULT_FORM_ID] AS [APPROVAL_DEFAULT_FORM_ID], 
+    [TB_USER_EX].[DISPLAY_NAME] AS [DISPLAY_NAME], 
+    [TB_USER_EX].[DISPLAY_ENG_NAME] AS [DISPLAY_ENG_NAME], 
+    [TB_USER_EX].[DISPLAY_MAIL_SENDER_NAME] AS [DISPLAY_MAIL_SENDER_NAME]
+    FROM [dbo].[TB_USER_EX] AS [TB_USER_EX]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="tblLogging" EntityType="Self.tblLogging" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [tblLogging].[IDX] AS [IDX], 
@@ -229,6 +565,18 @@
           <EntitySet Name="tblLogging" EntityType="BrandCenterModel.tblLogging" />
           <EntitySet Name="tblLoginHistory" EntityType="BrandCenterModel.tblLoginHistory" />
           <EntitySet Name="tblMenu" EntityType="BrandCenterModel.tblMenu" />
+          <EntitySet Name="tb_Company" EntityType="BrandCenterModel.tb_Company" />
+          <EntitySet Name="tb_Dept" EntityType="BrandCenterModel.tb_Dept" />
+          <EntitySet Name="tb_Duty" EntityType="BrandCenterModel.tb_Duty" />
+          <EntitySet Name="tb_Rank" EntityType="BrandCenterModel.tb_Rank" />
+          <EntitySet Name="tb_User" EntityType="BrandCenterModel.tb_User" />
+          <EntitySet Name="tb_UserLang" EntityType="BrandCenterModel.tb_UserLang" />
+          <EntitySet Name="tblButtons" EntityType="BrandCenterModel.tblButton" />
+          <EntitySet Name="tblGroupButtons" EntityType="BrandCenterModel.tblGroupButton" />
+          <EntitySet Name="tb_AdditionalJob" EntityType="BrandCenterModel.tb_AdditionalJob" />
+          <EntitySet Name="TB_DEPT_EX" EntityType="BrandCenterModel.TB_DEPT_EX" />
+          <EntitySet Name="tb_DeptLang" EntityType="BrandCenterModel.tb_DeptLang" />
+          <EntitySet Name="TB_USER_EX" EntityType="BrandCenterModel.TB_USER_EX" />
         </EntityContainer>
         <ComplexType Name="SP_ADM_sGROUPMASTERTestPG_Result">
           <Property Type="Int64" Name="RowNum" Nullable="true" />
@@ -261,6 +609,8 @@
           <Property Name="INPUT_DATE" Type="DateTime" Precision="3" />
           <Property Name="UPDATE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
+          <Property Name="SORTORDER" Type="Byte" />
+          <Property Name="JOBID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblDepartmentBuyer">
           <Key>
@@ -369,6 +719,245 @@
           <Property Name="UPDATE_USER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UPDATE_DATE" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="tb_Company">
+          <Key>
+            <PropertyRef Name="CompanyCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="CompanyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sortOrder" Type="Int32" />
+          <Property Name="DisplayYN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="FC_Target_YN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="SPSiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_Dept">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+          </Key>
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptOrder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentDeptCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptEmail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayYN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Manager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptShortName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DeptFullName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="RootOrgUnitID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgUnitID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoopisDeptCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpperOrgUnitID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_Duty">
+          <Key>
+            <PropertyRef Name="DutyCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="DutyCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DutyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="RegisteredDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ClosedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_Rank">
+          <Key>
+            <PropertyRef Name="RankCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="RankCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RankName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="PrgType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RankSort" Type="Int32" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="RegisteredDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ClosedDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_User">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="EmpID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrentEmpID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoginID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MainDeptCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayYN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DutyCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="JobCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="RankCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HomePhone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ExtensionNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Sort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="ObjectDetailCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObjectCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Person_ID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ExtensionNumber2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DooDreamYN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="etcUser" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="classify" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="JOB_FULL_NM" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EMP_TYPE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyLang" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="JOB_DETAIL" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HIDE_YellowPage_YN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DOC_CHECK_YN" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Ver" Type="Int32" />
+          <Property Name="PersonnelAreaCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrgUnitID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoopisDeptCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_UserLang">
+          <Key>
+            <PropertyRef Name="EmpID" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="EmpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserLName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UserFName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblButton">
+          <Key>
+            <PropertyRef Name="ButtonId" />
+          </Key>
+          <Property Name="ButtonId" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ButtonName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblGroupButton">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int16" Nullable="false" />
+          <Property Name="MENUID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ButtonId" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_AdditionalJob">
+          <Key>
+            <PropertyRef Name="LoginID" />
+            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="DeptCode" />
+          </Key>
+          <Property Name="LoginID" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TypeCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SeqNo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="RankCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DutyCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="DutyType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SubJobCode" Type="String" MaxLength="45" FixedLength="false" Unicode="true" />
+          <Property Name="Add_Ent_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Interface" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DisplayYN" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="StartDate" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="DutyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Stamp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpDate" Type="String" MaxLength="34" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TB_DEPT_EX">
+          <Key>
+            <PropertyRef Name="DEPTCODE" />
+            <PropertyRef Name="RECEIPT_UNIT_CODE" />
+            <PropertyRef Name="APPROVAL_UNIT_CODE" />
+            <PropertyRef Name="RECEIVABLE" />
+            <PropertyRef Name="APPROVABLE" />
+            <PropertyRef Name="FC_TARGET_YN" />
+          </Key>
+          <Property Name="DEPTCODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BGCODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RECEIPT_UNIT_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_UNIT_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="RECEIVABLE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVABLE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FC_TARGET_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ORG_VIEW" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="UNIT_FULL_CODE" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UNIT_FULL_NAME" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ENG_UNIT_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SHORT_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DSCR" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SIMPLENM" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tb_DeptLang">
+          <Key>
+            <PropertyRef Name="DeptCode" />
+            <PropertyRef Name="LangCode" />
+          </Key>
+          <Property Name="DeptCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LangCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DeptName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TB_USER_EX">
+          <Key>
+            <PropertyRef Name="LOGINID" />
+            <PropertyRef Name="LOCK" />
+            <PropertyRef Name="DEPUTY_YN" />
+            <PropertyRef Name="APPROVAL_ARRIVAL_YN" />
+            <PropertyRef Name="APPROVAL_ARRIVAL_MEDIUM" />
+            <PropertyRef Name="APPROVAL_COMPLETE_YN" />
+            <PropertyRef Name="APPROVAL_COMPLETE_MEDIUM" />
+            <PropertyRef Name="APPROVAL_REVIEW_YN" />
+            <PropertyRef Name="APPROVAL_UNIT_CODE" />
+            <PropertyRef Name="RECEIPT_UNIT_CODE" />
+            <PropertyRef Name="EDITER_MEDIUM" />
+            <PropertyRef Name="FILE_ATTACH_MEDIUM" />
+            <PropertyRef Name="ORG_LANGUAGE" />
+            <PropertyRef Name="ORG_VIEW" />
+            <PropertyRef Name="FC_TARGET_YN" />
+          </Key>
+          <Property Name="LOGINID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LOCK" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DEPUTY_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="DEPUTY_FROM_DT" Type="DateTime" Precision="3" />
+          <Property Name="DEPUTY_TO_DT" Type="DateTime" Precision="3" />
+          <Property Name="DEPUTY_CODE" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="DEPUTY_NAME" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_ARRIVAL_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_ARRIVAL_MEDIUM" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_COMPLETE_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_COMPLETE_MEDIUM" Type="String" Nullable="false" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_REVIEW_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_REVIEW_MEDIUM" Type="String" MaxLength="64" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_UNIT_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="RECEIPT_UNIT_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVER_CODE" Type="String" MaxLength="128" FixedLength="true" Unicode="false" />
+          <Property Name="MESSENGER_USAGE_STAT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="EDITER_MEDIUM" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FILE_ATTACH_MEDIUM" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ORG_LANGUAGE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ORG_VIEW" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="FC_TARGET_YN" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ABSENT_REASON" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="APPROVAL_DEFAULT_FORM_YN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="APPROVAL_DEFAULT_FORM_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DISPLAY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DISPLAY_ENG_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DISPLAY_MAIL_SENDER_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -422,6 +1011,8 @@
           <EntitySetMapping Name="tblCodeMaster">
             <EntityTypeMapping TypeName="BrandCenterModel.tblCodeMaster">
               <MappingFragment StoreEntitySet="tblCodeMaster">
+                <ScalarProperty Name="JOBID" ColumnName="JOBID" />
+                <ScalarProperty Name="SORTORDER" ColumnName="SORTORDER" />
                 <ScalarProperty Name="UPDATE_DATE" ColumnName="UPDATE_DATE" />
                 <ScalarProperty Name="UPDATE_USER" ColumnName="UPDATE_USER" />
                 <ScalarProperty Name="INPUT_DATE" ColumnName="INPUT_DATE" />
@@ -531,6 +1122,231 @@
                 <ScalarProperty Name="DESC" ColumnName="DESC" />
                 <ScalarProperty Name="MENUNAME" ColumnName="MENUNAME" />
                 <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Company">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_Company">
+              <MappingFragment StoreEntitySet="tb_Company">
+                <ScalarProperty Name="SPSiteName" ColumnName="SPSiteName" />
+                <ScalarProperty Name="FC_Target_YN" ColumnName="FC_Target_YN" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="DisplayYN" ColumnName="DisplayYN" />
+                <ScalarProperty Name="sortOrder" ColumnName="sortOrder" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Dept">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_Dept">
+              <MappingFragment StoreEntitySet="tb_Dept">
+                <ScalarProperty Name="UpperOrgUnitID" ColumnName="UpperOrgUnitID" />
+                <ScalarProperty Name="DoopisDeptCode" ColumnName="DoopisDeptCode" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+                <ScalarProperty Name="RootOrgUnitID" ColumnName="RootOrgUnitID" />
+                <ScalarProperty Name="DeptFullName" ColumnName="DeptFullName" />
+                <ScalarProperty Name="DeptShortName" ColumnName="DeptShortName" />
+                <ScalarProperty Name="Manager" ColumnName="Manager" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="DisplayYN" ColumnName="DisplayYN" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="DeptEmail" ColumnName="DeptEmail" />
+                <ScalarProperty Name="CreatedDT" ColumnName="CreatedDT" />
+                <ScalarProperty Name="ParentDeptCode" ColumnName="ParentDeptCode" />
+                <ScalarProperty Name="DeptLevel" ColumnName="DeptLevel" />
+                <ScalarProperty Name="DeptOrder" ColumnName="DeptOrder" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Duty">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_Duty">
+              <MappingFragment StoreEntitySet="tb_Duty">
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="DutyName" ColumnName="DutyName" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_Rank">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_Rank">
+              <MappingFragment StoreEntitySet="tb_Rank">
+                <ScalarProperty Name="ClosedDate" ColumnName="ClosedDate" />
+                <ScalarProperty Name="RegisteredDate" ColumnName="RegisteredDate" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="RankSort" ColumnName="RankSort" />
+                <ScalarProperty Name="PrgType" ColumnName="PrgType" />
+                <ScalarProperty Name="RankName" ColumnName="RankName" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="RankCode" ColumnName="RankCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_User">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_User">
+              <MappingFragment StoreEntitySet="tb_User">
+                <ScalarProperty Name="DoopisDeptCode" ColumnName="DoopisDeptCode" />
+                <ScalarProperty Name="OrgUnitID" ColumnName="OrgUnitID" />
+                <ScalarProperty Name="PersonnelAreaCode" ColumnName="PersonnelAreaCode" />
+                <ScalarProperty Name="Ver" ColumnName="Ver" />
+                <ScalarProperty Name="DOC_CHECK_YN" ColumnName="DOC_CHECK_YN" />
+                <ScalarProperty Name="HIDE_YellowPage_YN" ColumnName="HIDE_YellowPage_YN" />
+                <ScalarProperty Name="JOB_DETAIL" ColumnName="JOB_DETAIL" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="MyLang" ColumnName="MyLang" />
+                <ScalarProperty Name="EMP_TYPE" ColumnName="EMP_TYPE" />
+                <ScalarProperty Name="JOB_FULL_NM" ColumnName="JOB_FULL_NM" />
+                <ScalarProperty Name="classify" ColumnName="classify" />
+                <ScalarProperty Name="etcUser" ColumnName="etcUser" />
+                <ScalarProperty Name="DooDreamYN" ColumnName="DooDreamYN" />
+                <ScalarProperty Name="ExtensionNumber2" ColumnName="ExtensionNumber2" />
+                <ScalarProperty Name="Person_ID" ColumnName="Person_ID" />
+                <ScalarProperty Name="ObjectCategory" ColumnName="ObjectCategory" />
+                <ScalarProperty Name="ObjectDetailCategory" ColumnName="ObjectDetailCategory" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="Sort" ColumnName="Sort" />
+                <ScalarProperty Name="ExtensionNumber" ColumnName="ExtensionNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="RankCode" ColumnName="RankCode" />
+                <ScalarProperty Name="JobCode" ColumnName="JobCode" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="DisplayYN" ColumnName="DisplayYN" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="CreatedDT" ColumnName="CreatedDT" />
+                <ScalarProperty Name="MainDeptCode" ColumnName="MainDeptCode" />
+                <ScalarProperty Name="CompanyCode" ColumnName="CompanyCode" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="CurrentEmpID" ColumnName="CurrentEmpID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_UserLang">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_UserLang">
+              <MappingFragment StoreEntitySet="tb_UserLang">
+                <ScalarProperty Name="UserFName" ColumnName="UserFName" />
+                <ScalarProperty Name="UserLName" ColumnName="UserLName" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblButtons">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblButton">
+              <MappingFragment StoreEntitySet="tblButton">
+                <ScalarProperty Name="ButtonName" ColumnName="ButtonName" />
+                <ScalarProperty Name="ButtonId" ColumnName="ButtonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroupButtons">
+            <EntityTypeMapping TypeName="BrandCenterModel.tblGroupButton">
+              <MappingFragment StoreEntitySet="tblGroupButton">
+                <ScalarProperty Name="ButtonId" ColumnName="ButtonId" />
+                <ScalarProperty Name="MENUID" ColumnName="MENUID" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_AdditionalJob">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_AdditionalJob">
+              <MappingFragment StoreEntitySet="tb_AdditionalJob">
+                <ScalarProperty Name="ExpDate" ColumnName="ExpDate" />
+                <ScalarProperty Name="Stamp" ColumnName="Stamp" />
+                <ScalarProperty Name="RankName" ColumnName="RankName" />
+                <ScalarProperty Name="DutyName" ColumnName="DutyName" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="DisplayYN" ColumnName="DisplayYN" />
+                <ScalarProperty Name="Interface" ColumnName="Interface" />
+                <ScalarProperty Name="Add_Ent_Code" ColumnName="Add_Ent_Code" />
+                <ScalarProperty Name="SubJobCode" ColumnName="SubJobCode" />
+                <ScalarProperty Name="DutyType" ColumnName="DutyType" />
+                <ScalarProperty Name="DutyCode" ColumnName="DutyCode" />
+                <ScalarProperty Name="RankCode" ColumnName="RankCode" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+                <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_DEPT_EX">
+            <EntityTypeMapping TypeName="BrandCenterModel.TB_DEPT_EX">
+              <MappingFragment StoreEntitySet="TB_DEPT_EX">
+                <ScalarProperty Name="SIMPLENM" ColumnName="SIMPLENM" />
+                <ScalarProperty Name="DSCR" ColumnName="DSCR" />
+                <ScalarProperty Name="SHORT_NAME" ColumnName="SHORT_NAME" />
+                <ScalarProperty Name="ENG_UNIT_NAME" ColumnName="ENG_UNIT_NAME" />
+                <ScalarProperty Name="UNIT_FULL_NAME" ColumnName="UNIT_FULL_NAME" />
+                <ScalarProperty Name="UNIT_FULL_CODE" ColumnName="UNIT_FULL_CODE" />
+                <ScalarProperty Name="ORG_VIEW" ColumnName="ORG_VIEW" />
+                <ScalarProperty Name="FC_TARGET_YN" ColumnName="FC_TARGET_YN" />
+                <ScalarProperty Name="APPROVABLE" ColumnName="APPROVABLE" />
+                <ScalarProperty Name="RECEIVABLE" ColumnName="RECEIVABLE" />
+                <ScalarProperty Name="APPROVAL_UNIT_CODE" ColumnName="APPROVAL_UNIT_CODE" />
+                <ScalarProperty Name="RECEIPT_UNIT_CODE" ColumnName="RECEIPT_UNIT_CODE" />
+                <ScalarProperty Name="BGCODE" ColumnName="BGCODE" />
+                <ScalarProperty Name="DEPTCODE" ColumnName="DEPTCODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DeptLang">
+            <EntityTypeMapping TypeName="BrandCenterModel.tb_DeptLang">
+              <MappingFragment StoreEntitySet="tb_DeptLang">
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="LangCode" ColumnName="LangCode" />
+                <ScalarProperty Name="DeptCode" ColumnName="DeptCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TB_USER_EX">
+            <EntityTypeMapping TypeName="BrandCenterModel.TB_USER_EX">
+              <MappingFragment StoreEntitySet="TB_USER_EX">
+                <ScalarProperty Name="DISPLAY_MAIL_SENDER_NAME" ColumnName="DISPLAY_MAIL_SENDER_NAME" />
+                <ScalarProperty Name="DISPLAY_ENG_NAME" ColumnName="DISPLAY_ENG_NAME" />
+                <ScalarProperty Name="DISPLAY_NAME" ColumnName="DISPLAY_NAME" />
+                <ScalarProperty Name="APPROVAL_DEFAULT_FORM_ID" ColumnName="APPROVAL_DEFAULT_FORM_ID" />
+                <ScalarProperty Name="APPROVAL_DEFAULT_FORM_YN" ColumnName="APPROVAL_DEFAULT_FORM_YN" />
+                <ScalarProperty Name="ABSENT_REASON" ColumnName="ABSENT_REASON" />
+                <ScalarProperty Name="FC_TARGET_YN" ColumnName="FC_TARGET_YN" />
+                <ScalarProperty Name="ORG_VIEW" ColumnName="ORG_VIEW" />
+                <ScalarProperty Name="ORG_LANGUAGE" ColumnName="ORG_LANGUAGE" />
+                <ScalarProperty Name="FILE_ATTACH_MEDIUM" ColumnName="FILE_ATTACH_MEDIUM" />
+                <ScalarProperty Name="EDITER_MEDIUM" ColumnName="EDITER_MEDIUM" />
+                <ScalarProperty Name="MESSENGER_USAGE_STAT" ColumnName="MESSENGER_USAGE_STAT" />
+                <ScalarProperty Name="APPROVER_CODE" ColumnName="APPROVER_CODE" />
+                <ScalarProperty Name="RECEIPT_UNIT_CODE" ColumnName="RECEIPT_UNIT_CODE" />
+                <ScalarProperty Name="APPROVAL_UNIT_CODE" ColumnName="APPROVAL_UNIT_CODE" />
+                <ScalarProperty Name="APPROVAL_REVIEW_MEDIUM" ColumnName="APPROVAL_REVIEW_MEDIUM" />
+                <ScalarProperty Name="APPROVAL_REVIEW_YN" ColumnName="APPROVAL_REVIEW_YN" />
+                <ScalarProperty Name="APPROVAL_COMPLETE_MEDIUM" ColumnName="APPROVAL_COMPLETE_MEDIUM" />
+                <ScalarProperty Name="APPROVAL_COMPLETE_YN" ColumnName="APPROVAL_COMPLETE_YN" />
+                <ScalarProperty Name="APPROVAL_ARRIVAL_MEDIUM" ColumnName="APPROVAL_ARRIVAL_MEDIUM" />
+                <ScalarProperty Name="APPROVAL_ARRIVAL_YN" ColumnName="APPROVAL_ARRIVAL_YN" />
+                <ScalarProperty Name="DEPUTY_NAME" ColumnName="DEPUTY_NAME" />
+                <ScalarProperty Name="DEPUTY_CODE" ColumnName="DEPUTY_CODE" />
+                <ScalarProperty Name="DEPUTY_TO_DT" ColumnName="DEPUTY_TO_DT" />
+                <ScalarProperty Name="DEPUTY_FROM_DT" ColumnName="DEPUTY_FROM_DT" />
+                <ScalarProperty Name="DEPUTY_YN" ColumnName="DEPUTY_YN" />
+                <ScalarProperty Name="LOCK" ColumnName="LOCK" />
+                <ScalarProperty Name="LOGINID" ColumnName="LOGINID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -36,6 +36,18 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
         public virtual DbSet<tblLogging> tblLogging { get; set; }
         public virtual DbSet<tblLoginHistory> tblLoginHistory { get; set; }
         public virtual DbSet<tblMenu> tblMenu { get; set; }
+        public virtual DbSet<tb_Company> tb_Company { get; set; }
+        public virtual DbSet<tb_Dept> tb_Dept { get; set; }
+        public virtual DbSet<tb_Duty> tb_Duty { get; set; }
+        public virtual DbSet<tb_Rank> tb_Rank { get; set; }
+        public virtual DbSet<tb_User> tb_User { get; set; }
+        public virtual DbSet<tb_UserLang> tb_UserLang { get; set; }
+        public virtual DbSet<tblButton> tblButtons { get; set; }
+        public virtual DbSet<tblGroupButton> tblGroupButtons { get; set; }
+        public virtual DbSet<tb_AdditionalJob> tb_AdditionalJob { get; set; }
+        public virtual DbSet<TB_DEPT_EX> TB_DEPT_EX { get; set; }
+        public virtual DbSet<tb_DeptLang> tb_DeptLang { get; set; }
+        public virtual DbSet<TB_USER_EX> TB_USER_EX { get; set; }
     
         public virtual ObjectResult<SP_ADM_sGROUPMASTERTestPG_Result> SP_ADM_sGROUPMASTERTestPG(string gROUPNAME, Nullable<int> cURRENTPAGE, Nullable<int> pAGE_COUNT)
         {

@@ -12,6 +12,12 @@
     Layout = "~/Views/Shared/TestLayout.cshtml";
 }
 
+@*<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/Foolproof/mvcfoolproof.unobtrusive.js"></script>*@
+
+
+
 <h2>Edit</h2>
 
 
@@ -55,6 +61,9 @@
 
                 @Html.DropDownListFor(model => model.JobId, ViewBag.JOBSelectList as SelectList, new { @class = "form-control" })
 
+                @*@Html.EditorFor(model => model.Value1)
+                @Html.EditorFor(model => model.Value2)
+                @Html.ValidationMessageFor(model => model.Value2)*@
             </div>
         </div>
 

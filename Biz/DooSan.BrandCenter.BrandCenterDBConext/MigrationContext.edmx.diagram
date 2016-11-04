@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1c2b4a5c86c8403db64be32c7b7b698f" Name="Diagram1" ZoomLevel="26">
+      <Diagram DiagramId="1c2b4a5c86c8403db64be32c7b7b698f" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="BrandCenterModel.tblGroup" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BrandCenterModel.tblGroupUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BrandCenterModel.tblCodeMaster" Width="1.5" PointX="0.75" PointY="3.75" />
@@ -14,6 +14,18 @@
         <EntityTypeShape EntityType="BrandCenterModel.tblLogging" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="BrandCenterModel.tblLoginHistory" Width="1.5" PointX="4.75" PointY="7.75" />
         <EntityTypeShape EntityType="BrandCenterModel.tblMenu" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Company" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Dept" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Duty" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Rank" Width="1.5" PointX="9.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_User" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_UserLang" Width="1.5" PointX="2.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblButton" Width="1.5" PointX="11.75" PointY="10.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupButton" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_AdditionalJob" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.TB_DEPT_EX" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_DeptLang" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.TB_USER_EX" Width="1.5" PointX="13.75" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

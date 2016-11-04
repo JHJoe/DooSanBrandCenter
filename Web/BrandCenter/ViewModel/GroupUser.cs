@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 using FluentValidation.Attributes;
 using System;
+//using DataAnnotationsExtensions;
+using Foolproof;
 
 namespace BrandCenter.ViewModels
 {
@@ -21,6 +23,12 @@ namespace BrandCenter.ViewModels
         public short? GroupUserId { get; set; }
 
         public string JobId { get; set; }
+
+
+        //public string Value1 { get; set; }
+
+        //[NotEqualTo("Value1")]
+        //public string Value2 { get; set; }
 
     }
 

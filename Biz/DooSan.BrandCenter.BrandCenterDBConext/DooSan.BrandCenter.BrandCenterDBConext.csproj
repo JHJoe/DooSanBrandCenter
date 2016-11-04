@@ -83,6 +83,9 @@
     <Compile Include="SP_ADM_sGROUPUSER_Result.cs">
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblButton.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblCodeMaster.cs">
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
@@ -93,6 +96,9 @@
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGroup.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblGroupButton.cs">
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGroupMenu.cs">
@@ -108,6 +114,36 @@
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblMenu.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_AdditionalJob.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Company.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Dept.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_DeptLang.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_DEPT_EX.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Duty.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_Rank.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_User.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_UserLang.cs">
+      <DependentUpon>MigrationContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TB_USER_EX.cs">
       <DependentUpon>MigrationContext.tt</DependentUpon>
     </Compile>
   </ItemGroup>
