@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<script src="/BrandCenter/Scripts/jquery-1.10.2.js"></script>
+
+<script src="/BrandCenter/Scripts/jquery-ui.min.js"></script>
+<link href="/BrandCenter/Scripts/jquery-ui-1.9.2.custom/css/custom-theme/jquery-ui-1.9.2.custom.min.css" rel="Stylesheet" type="text/css" />
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <input type="text" id="testDatepicker">  
+</body>
+
+</html>
+
+<script type="text/javascript">
+
+    var DateFormat_jQuery = "yy-mm-dd";
+
+
+         $(document).ready(
+             function ()
+             {
+                initForm();
+             }
+        );
+
+
+
+         $(function () {
+             $("#datepicker1").datepicker({
+                 dateFormat: 'yy-mm-dd',
+                 prevText: '이전 달',
+                 nextText: '다음 달',
+                 monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                 monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                 dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+                 dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+                 dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+                 showMonthAfterYear: true,
+                 changeMonth: true,
+                 changeYear: true,
+                 yearSuffix: '년'
+             });
+         });
+
+    function initForm() {
+
+
+
+        $("#testDatepicker, #PurchaseDate").datepicker({
+            showOn: "both",
+            buttonImageOnly: false,
+            dateFormat: DateFormat_jQuery,
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            minDate: 0 //미래만
+        });
+
+        $("#FirstRegistrationDate").datepicker({
+            showOn: "both",
+            buttonImageOnly: false,
+            dateFormat: DateFormat_jQuery,
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            maxDate: 0 //과거만
+        });
+
+    }
+
+</script>

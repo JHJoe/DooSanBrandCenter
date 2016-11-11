@@ -15,7 +15,7 @@ namespace BrandCenter.Models
         [Key]
         public short? GroupUserId { get; set; }
 
-        public short UserId { get; set; }
+        public string UserId { get; set; }
 
         //[Range(1, 100)]
 

@@ -17,10 +17,10 @@ namespace BrandCenter.Validators
             //RuleFor(x => x.USERID).NotNull().When(x => x.GROUPID == -1).WithMessage("'Country' must be selected.");
         }
 
-        private bool UserIdExist(short userid)
+        private bool UserIdExist(string userid)
         {
             //사용자id가 존재하는지 db 서치하고..(실제로 keyin하진 않지만)
-            if (userid.Equals(57))
+            if (userid.Equals("57"))
                 return false;
             else
                 return true;

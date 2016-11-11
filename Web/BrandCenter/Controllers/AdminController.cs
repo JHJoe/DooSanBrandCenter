@@ -18,13 +18,17 @@ using BrandCenter.Helper;
 
 namespace BrandCenter.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : Base.BaseController
     {
         private BrandCenter.DAL.BrandCenterContext db = new BrandCenter.DAL.BrandCenterContext();
-        private DefaultContext dbcnxt = new DefaultContext();
+        //private DefaultContext dbcnxt;// = new DefaultContext();
         // private GroupTest dbtest = new GroupTest();
         //상속샘플
-            //private DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities dbEntities = new DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities();
+        //private DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities dbEntities = new DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities();
+        public AdminController(DefaultContext db) : base(db)
+        {
+            //dbcnxt = db; //샘플 생성자. 평소엔 생략
+        }
 
         #region 조회샘플
         // GET: Admin
@@ -45,7 +49,7 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var group = from s in dbcnxt.tblGroup
+            var group = from s in _db.tblGroup
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -93,7 +97,7 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in dbcnxt.tblGroup
+            var students = from s in _db.tblGroup
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -145,8 +149,8 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var groups = from s in dbcnxt.tblGroupUser
-                           join gm in dbcnxt.tblGroup on s.GroupId equals gm.GroupId
+            var groups = from s in _db.tblGroupUser
+                           join gm in _db.tblGroup on s.GroupId equals gm.GroupId
                            select new ViewModels.GroupUser
                            {
                               GroupUserId = s.GroupUserId,
@@ -176,7 +180,7 @@ namespace BrandCenter.Controllers
             //jojo paging 샘플
             ViewBag.Page = pageNumber;
 
-            ViewBag.GROUPSelectList = DropDownHelper.GetGroupDropDownList(dbcnxt);
+            ViewBag.GROUPSelectList = DropDownHelper.GetGroupDropDownList(_db);
 
             var pageList = groups.ToPagedList(pageNumber, pageSize);
 
@@ -255,7 +259,7 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in dbcnxt.tblCodeMaster
+            var students = from s in _db.tblCodeMaster
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -303,9 +307,9 @@ namespace BrandCenter.Controllers
             var functionId = "%";
             //var result = db.Database.SqlQuery<GetFunctionByID>("GetFunctionByID @FunctionId", new SqlParameter("@FunctionId", functionId)).ToList());
 
-            //var students = dbcnxt.Database.SqlQuery<ViewModels.GroupUser>("exec SP_ADM_sGROUPUSER @GROUPID ", "%").ToList<ViewModels.GroupUser>();
-            //var students = dbcnxt.Database.SqlQuery<ViewModels.GroupUser>(" SP_ADM_sGROUPUSER @GROUPID ", new SqlParameter("@GROUPID", "%") ).ToList<ViewModels.GroupUser>();
-            var students = dbcnxt.Database.SqlQuery<ViewModels.GroupUser>(" SP_ADM_sGROUPUSER @GROUPID ", new SqlParameter("@GROUPID", "%")).ToList();
+            //var students = _db.Database.SqlQuery<ViewModels.GroupUser>("exec SP_ADM_sGROUPUSER @GROUPID ", "%").ToList<ViewModels.GroupUser>();
+            //var students = _db.Database.SqlQuery<ViewModels.GroupUser>(" SP_ADM_sGROUPUSER @GROUPID ", new SqlParameter("@GROUPID", "%") ).ToList<ViewModels.GroupUser>();
+            var students = _db.Database.SqlQuery<ViewModels.GroupUser>(" SP_ADM_sGROUPUSER @GROUPID ", new SqlParameter("@GROUPID", "%")).ToList();
             //페이징등이 필요없다면 괜찮지만 그렇지 않다면 QUERYABLE 이 실제 페이징이 되므로 (가져온 데이터가 아니라) 낫다. 
 
             return View(students);
@@ -369,6 +373,12 @@ namespace BrandCenter.Controllers
 
         #region Edit Sample
 
+        public ActionResult DateTest()
+        {
+            return View();
+        }
+
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -376,7 +386,7 @@ namespace BrandCenter.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var student = dbcnxt.tblGroup.Find(id);
+            var student = _db.tblGroup.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -408,7 +418,7 @@ namespace BrandCenter.Controllers
 
             ViewBag.IsCreate = isCreate;
 
-            var student = dbcnxt.tblGroup.Find(id);
+            var student = _db.tblGroup.Find(id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -435,23 +445,23 @@ namespace BrandCenter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    using (var tran = dbcnxt.Database.BeginTransaction())
+                    using (var tran = _db.Database.BeginTransaction())
                     {
                         try
                         {
 
                             if (ViewBag.IsCreate)
-                                dbcnxt.tblGroup.Add(group);
+                                _db.tblGroup.Add(group);
                             else
                             {
                                 //복잡한건 아래처럼 하고 
                                 UpdateGroupModel(group);
                                 //일반적인건 아래처럼 처리
-                                //var groupToUpdate = dbcnxt.tblGroup.Find(group.GroupId);
+                                //var groupToUpdate = _db.tblGroup.Find(group.GroupId);
                                 //TryUpdateModel(groupToUpdate, "", new string[] { "Name", "Descript" });
                             }
 
-                            dbcnxt.SaveChanges();
+                            _db.SaveChanges();
                             tran.Commit();
 
                             //시스템적으로 에러를 낼 경우 아래와 같이 지정
@@ -488,7 +498,7 @@ namespace BrandCenter.Controllers
 
         private void UpdateGroupModel(tblGroup group)
         {
-            var groupToUpdate = dbcnxt.tblGroup.Find(group.GroupId);
+            var groupToUpdate = _db.tblGroup.Find(group.GroupId);
             groupToUpdate.Name = group.Name;
             groupToUpdate.Descript = group.Descript;
 
@@ -501,9 +511,9 @@ namespace BrandCenter.Controllers
         {
             try
             {
-                var group = dbcnxt.tblGroup.Find(id);
-                dbcnxt.tblGroup.Remove(group);
-                dbcnxt.SaveChanges();
+                var group = _db.tblGroup.Find(id);
+                _db.tblGroup.Remove(group);
+                _db.SaveChanges();
                 return Json(new { Result = "OK" });
             }
             catch (Exception ex)
@@ -532,8 +542,8 @@ namespace BrandCenter.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var groupuser = from s in dbcnxt.tblGroupUser
-                           join gm in dbcnxt.tblGroup on s.GroupId equals gm.GroupId
+            var groupuser = from s in _db.tblGroupUser
+                           join gm in _db.tblGroup on s.GroupId equals gm.GroupId
                            where s.GroupUserId == id
                            select new ViewModels.GroupUser
                            {
@@ -545,7 +555,7 @@ namespace BrandCenter.Controllers
 
             var viewmodel = groupuser.Single();
 
-            //var student = dbcnxt.tblGroupUser.Find(id);
+            //var student = _db.tblGroupUser.Find(id);
             if (viewmodel == null)
             {
                 return HttpNotFound();
@@ -577,8 +587,8 @@ namespace BrandCenter.Controllers
 
             ViewBag.IsCreate = isCreate;
 
-            var groupuserQuery = from s in dbcnxt.tblGroupUser
-                            join gm in dbcnxt.tblGroup on s.GroupId equals gm.GroupId
+            var groupuserQuery = from s in _db.tblGroupUser
+                            join gm in _db.tblGroup on s.GroupId equals gm.GroupId
                             where s.GroupUserId == id
                             select new ViewModels.GroupUser
                             {
@@ -595,19 +605,19 @@ namespace BrandCenter.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.JOBSelectList = GetCodeMasterDropDownList(dbcnxt, "10");
+            ViewBag.JOBSelectList = DropDownHelper.GetCodeMasterDropDownList(_db, "10");
 
             return View(groupuser);
         }
-        public static SelectList GetCodeMasterDropDownList(DefaultContext db, string largeDiv, object selected = null)
-        {
-            var countryQuery = from c in db.tblCodeMaster
-                               where c.LARG_DIVS == largeDiv
-                               orderby c.SMLL_DIVS, c.SMLL_DIVS
-                               select c;
+        //public static SelectList GetCodeMasterDropDownList(DefaultContext db, string largeDiv, object selected = null)
+        //{
+        //    var countryQuery = from c in db.tblCodeMaster
+        //                       where c.LARG_DIVS == largeDiv
+        //                       orderby c.SMLL_DIVS, c.SMLL_DIVS
+        //                       select c;
 
-            return new SelectList(countryQuery, "SMLL_DIVS", "NAME", selected);
-        }
+        //    return new SelectList(countryQuery, "SMLL_DIVS", "NAME", selected);
+        //}
 
         // POST: Group/GroupUserEdit
         [HttpPost]
@@ -627,7 +637,7 @@ namespace BrandCenter.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    using (var tran = dbcnxt.Database.BeginTransaction())
+                    using (var tran = _db.Database.BeginTransaction())
                     {
                         try
                         {
@@ -637,19 +647,37 @@ namespace BrandCenter.Controllers
                                 //혹은 아래 유틸을 쓰면 한방에 복사가 된다.         
                                 var newtblGroupUser = ReflectionUtil.CopyProperties<GroupUser, tblGroupUser>(group);
 
-                                
-                                dbcnxt.tblGroupUser.Add(newtblGroupUser);
+
+                                _db.tblGroupUser.Add(newtblGroupUser);
                             }
                             else
                             {
                                 //복잡한건 아래처럼 하고 
                                 UpdateGroupUserModel(group);
                                 //일반적인건 아래처럼 처리
-                                //var groupToUpdate = dbcnxt.tblGroupUser.Find(group.GroupUserId);
+                                //var groupToUpdate = _db.tblGroupUser.Find(group.GroupUserId);
                                 //TryUpdateModel(groupToUpdate, "", new string[] { "GroupId", "UserId" });
+                                //수동 validation
+                                if (ThrowValidateError(_db.GetValidationErrors(), false))
+                                {
+                                    ViewBag.JOBSelectList = DropDownHelper.GetCodeMasterDropDownList(_db, "10");
+                                    return View(group);
+
+                                }
+                                //foreach (var validationResults in _db.GetValidationErrors())
+                                //{
+                                //    foreach (var error in validationResults.ValidationErrors)
+                                //    {
+                                //        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                                //        ViewBag.JOBSelectList = DropDownHelper.GetCodeMasterDropDownList(_db, "10");
+                                //        return View(group);
+
+                                //    }
+                                //}
+
                             }
 
-                            dbcnxt.SaveChanges();
+                            _db.SaveChanges();
                             tran.Commit();
 
                             return RedirectToAction("GroupUserList");
@@ -666,20 +694,10 @@ namespace BrandCenter.Controllers
                             //ui에 걸린 에러가 submit 단계에서 출력된다.
                             //ModelState.AddModelError("", e.Message);
                             //string multiEntityError = string.Empty;
-                            foreach (var eve in e.EntityValidationErrors)
-                            {
-
-                                // 이부분은 주석 처리 할 수도 있다.
-                                ModelState.AddModelError("", string.Format("시스템 에러 메세지 Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                                                    eve.Entry.Entity.GetType().Name, eve.Entry.State));
-                                foreach (var ve in eve.ValidationErrors)
-                                {
-                                    ModelState.AddModelError(ve.PropertyName, ve.ErrorMessage);
-                                    //ModelState.AddModelError("", string.Format("- Property: \"{0}\", Error: \"{1}\"",
-                                    //    ve.PropertyName, ve.ErrorMessage));
-                                }
-                            }
-                            //                            throw;
+                            ThrowValidateError(e.EntityValidationErrors, true);
+                            //ThrowModelError(e);
+                            //ajax 저장이 아닌 이상 view에 필요한 select는 해줘야한다.
+                            ViewBag.JOBSelectList = DropDownHelper.GetCodeMasterDropDownList(_db, "10");
 
                             return View(group);
 
@@ -710,13 +728,15 @@ namespace BrandCenter.Controllers
             return View(group);
         }
 
+   
+
         private void UpdateGroupUserModel(GroupUser groupuser)
         {
-            var groupToUpdate = dbcnxt.tblGroup.Find(groupuser.GROUPID);
+            var groupToUpdate = _db.tblGroup.Find(groupuser.GROUPID);
             //groupToUpdate.GroupId = groupuser.GROUPID;
             groupToUpdate.Name = groupuser.NAME;
 
-            var groupUserToUpdate = dbcnxt.tblGroupUser.Find(groupuser.GroupUserId);
+            var groupUserToUpdate = _db.tblGroupUser.Find(groupuser.GroupUserId);
             groupUserToUpdate.GroupId = groupuser.GROUPID;
             groupUserToUpdate.UserId = groupuser.USERID;
 
@@ -729,9 +749,9 @@ namespace BrandCenter.Controllers
         {
             try
             {
-                var group = dbcnxt.tblGroupUser.Find(id);
-                dbcnxt.tblGroupUser.Remove(group);
-                dbcnxt.SaveChanges();
+                var group = _db.tblGroupUser.Find(id);
+                _db.tblGroupUser.Remove(group);
+                _db.SaveChanges();
                 return Json(new { Result = "OK" });
             }
             catch (Exception ex)
@@ -753,7 +773,7 @@ namespace BrandCenter.Controllers
 
             try
             {
-                using (var tran = dbcnxt.Database.BeginTransaction())
+                using (var tran = _db.Database.BeginTransaction())
                 {
                     try
                     {
@@ -761,12 +781,12 @@ namespace BrandCenter.Controllers
                         string[] checkboxList = fromcoll["checkboxList"].Split(',');
                         foreach (string id in checkboxList)
                         {
-                            var groupuser = dbcnxt.tblGroupUser.Find(int.Parse(id));
+                            var groupuser = _db.tblGroupUser.Find(int.Parse(id));
 
                             groupuser.GroupId = short.Parse(selectedGroup);
-                            //dbcnxt.tblGroupUser.Remove(group);
+                            //_db.tblGroupUser.Remove(group);
                         }
-                        dbcnxt.SaveChanges();
+                        _db.SaveChanges();
                         tran.Commit();
                     }
                     catch (DbEntityValidationException e)

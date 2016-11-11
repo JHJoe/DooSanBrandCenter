@@ -20,6 +20,7 @@
         {
         }
 
+        public virtual DbSet<tblUser> tblUser { get; set; }
         public virtual DbSet<tblGroup> tblGroup { get; set; }
         public virtual DbSet<tblGroupUser> tblGroupUser { get; set; }
         public virtual DbSet<CodeMaster> tblCodeMaster { get; set; }
@@ -31,6 +32,9 @@
             //modelBuilder.Entity<tblGroup>()
             //    .Property(e => e.Name)
             //    .IsUnicode(false);
+
+            //modelBuilder.Entity<CodeMaster>().MapToStoredProcedures();
+
         }
 
         // 모델에 포함할 각 엔터티 형식에 대한 DbSet을 추가합니다. Code First 모델 구성 및 사용에 대한 

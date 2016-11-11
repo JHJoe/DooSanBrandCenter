@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Message
+namespace DooSan.BrandCenter.FrameWork.Message
 {
     public static class Msg
     {

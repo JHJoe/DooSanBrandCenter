@@ -7,23 +7,29 @@ using FluentValidation.Attributes;
 using System;
 //using DataAnnotationsExtensions;
 using Foolproof;
+using System.Web.WebPages.Html;
 
 namespace BrandCenter.ViewModels
 {
     //일단 fluent는 쓰지 않는걸로
     //[Validator(typeof(Validators.GroupUserValidator))]
-
     public class GroupUser 
     {
         public short? GROUPID { get; set; }
         //[errorStringValidate]
         public string NAME { get; set; }
         [Range(1, 1000)]
-        public short USERID { get; set; }
+        public string USERID { get; set; }
         public short? GroupUserId { get; set; }
 
         public string JobId { get; set; }
 
+
+        public IEnumerable<SelectListItem> JobIs { get; set; }
+
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        //public Nullable<System.DateTime> TestDate { get; set; }
 
         //public string Value1 { get; set; }
 

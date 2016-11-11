@@ -8,7 +8,7 @@ namespace BrandCenter.Models
     using System.Data.Entity.Spatial;
 
 
-    [Table("tb_User")]
+    [Table("tblUser")]
     public class tblUser
     {
         public string EmpID { get; set; }
@@ -26,7 +26,7 @@ namespace BrandCenter.Models
         public string JobCode { get; set; }
         public string RankCode { get; set; }
         public string FaxNumber { get; set; }
-        public string HomePhone { get; set; }
+        //public string HomePhone { get; set; }
         public string CellPhone { get; set; }
         public string ExtensionNumber { get; set; }
         public string Sort { get; set; }
@@ -45,7 +45,7 @@ namespace BrandCenter.Models
         public string Location { get; set; }
         public string JOB_DETAIL { get; set; }
         public string HIDE_YellowPage_YN { get; set; }
-        public string DOC_CHECK_YN { get; set; }
+        //public string DOC_CHECK_YN { get; set; }
         public Nullable<int> Ver { get; set; }
         public string PersonnelAreaCode { get; set; }
         public string OrgUnitID { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BrandCenter.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,9 +7,12 @@ using System.Web.Mvc;
 
 namespace BrandCenter.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : Base.BaseController
     {
 
+        public HomeController(DefaultContext db) : base(db)
+        {
+        }
         public ActionResult Index()
         {
 
