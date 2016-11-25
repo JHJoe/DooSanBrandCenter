@@ -52,6 +52,18 @@
                     @*<b>@Html.Raw(a[1])</b>*@
                 }
                 </p>
+                <p>
+                    session name :
+                    @{
+
+                        string Name = BrandCenter.Helper.GetSession.DisplayName;
+                        <b>@Name</b>
+                        // System.DirectoryServices.DirectoryEntry ADEntry = new System.DirectoryServices.DirectoryEntry("WinNT://" + a[0] + "/" + a[1]);
+                        //string Name = ADEntry.Properties["FullName"].Value.ToString();
+
+                        @*<b>@Html.Raw(a[1])</b>*@
+                    }
+                </p>
             </div>
         </div>
     </div>

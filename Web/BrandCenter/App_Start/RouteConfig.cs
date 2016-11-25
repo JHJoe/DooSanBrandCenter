@@ -18,6 +18,11 @@ namespace BrandCenter
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Paging",
+                url: "{controller}/{action}/{pn}/{ps}",
+                defaults: new { controller = "Board", action = "Index", pn = UrlParameter.Optional, ps = UrlParameter.Optional }
+            );
         }
     }
 }

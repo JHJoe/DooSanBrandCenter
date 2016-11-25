@@ -17,9 +17,12 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
         public int LINKIDX { get; set; }
         public string TYPE { get; set; }
         public int IDX { get; set; }
-        public string LOCALPATH { get; set; }
+        public string URLPATH { get; set; }
         public string PYSICALPATH { get; set; }
-        public string FILENAME { get; set; }
+        public string ORI_FILENAME { get; set; }
+        public bool IS_BOARD { get; set; }
+        public string SIZE { get; set; }
+        public string EXTENSION { get; set; }
         public string INPUT_USER { get; set; }
         public Nullable<System.DateTime> INPUT_DATE { get; set; }
         public string UPDATE_USER { get; set; }

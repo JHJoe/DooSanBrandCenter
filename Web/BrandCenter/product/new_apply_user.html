@@ -1,0 +1,774 @@
+﻿
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <title>두산 브랜드 센터</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!--[if lt IE 9]>
+    <script src="../resources/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../resources/css/common.css" />
+    <script type="text/javascript" src="../resources/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../resources/js/jquery.bxslider.min.js"></script>
+    <script type="text/javascript" src="../resources/js/jquery.placeholder.min.js"></script>
+    <script type="text/javascript" src="../resources/js/common.js"></script>
+    <script type="text/javascript" src="../resources/js/textObject.js"></script>
+    <script type="text/javascript" src="../resources/js/concrete.min.js"></script>
+    <script type="text/javascript" src="../resources/js/xml2json.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="header">헤더</div>
+        <!-- //header -->
+
+        <div id="container">
+            <div id="lnb_wrap">
+                <h2><span>CI 제작물<br>신청</span></h2>
+                <ul id="lnb">
+                    <li class="on"><a href="#none">진행목록</a></li>
+                    <li><a href="#none">완료목록</a></li>
+                </ul>
+            </div>
+            <!-- //snb -->
+            <div id="contents" class="product_apply_view">
+                <h3 class="page_title">CI 제작물 신청</h3><!-- page_title -->
+
+                <div class="progress_style_01">
+                    <div class="progress_box_01 bg_progress_01 on">
+                        <p class="icon_progress_01"><strong>신청</strong></p>
+                    </div>
+                    <div class="progress_box_02 bg_progress_02">
+                        <p class="icon_progress_02"><strong>결재</strong></p>
+                    </div>
+                    <div class="progress_box_03 bg_progress_03">
+                        <p class="icon_progress_03"><strong>제작</strong></p>
+                    </div>
+                </div><!--progress_style_01-->
+
+                <div class="btn_wrap">
+                    <div class="fl"><a href="#none" class="btn_st">임시저장</a><a href="javascript:void(0)" onclick="saveToData();" class="btn_st">결재요청</a><a href="#none" class="btn_st bg_gray">목록</a></div>
+                </div><!-- btn_wrap -->
+                <h4 class="title_type_01">신청내용</h4><!-- title_type_01 -->
+                <div class="table_form_01">
+                    <table>
+                        <colgroup>
+                            <col style="width:120px;" />
+                            <col />
+                            <col style="width:120px;" />
+                            <col />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="4">#000001</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">용도</th>
+                                <td>
+                                    <div class="radio_ui">
+                                        <p><input type="radio" id="use_000001_01" name="use_000001" value="inside" /><label for="use_000001_01">내부용</label></p>
+                                        <p><input type="radio" id="use_000001_02" name="use_000001" value="outside" /><label for="use_000001_02">외부용</label></p>
+                                    </div>
+                                </td>
+                                <th scope="row">유형</th>
+                                <td>
+                                    <div class="radio_ui">
+                                        <p><input type="radio" id="type_000002_01" name="size" value="placard" checked /><label for="type_000002_01">현수막</label></p>
+                                        <p><input type="radio" id="type_000002_02" name="size" value="banner" /><label for="type_000002_02">배너</label></p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" rowspan="2">배경색 및 규격</th>
+                                <td colspan="3">
+                                    <div style="float:left">
+                                        <div class="radio_ui">
+                                            <p><input type="radio" id="type_000003_01" name="bg_color" checked value="#0018A8" /><label for="type_000003_01"><span style="width:20px; height:18px; background-color:#0018A8; color:#0018A8;">_____</span></label></p>
+                                            <p><input type="radio" id="type_000003_02" name="bg_color" value="#0088CE" /><label for="type_000003_02"><span style="width:20px; height:18px; background-color:#0088CE; color:#0088CE;">_____</span></label></p>
+                                            <p><input type="radio" id="type_000003_03" name="bg_color" value="#00AD83" /><label for="type_000003_03"><span style="width:20px; height:18px; background-color:#00AD83; color:#00AD83;">_____</span></label></p>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right;font-size:10px;">※ 길이 입력은 500단위씩 입력 가능합니다.</div>
+                                    <div style="clear:both"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="td_type_size">
+                                    <div>
+                                        <div class="select_ui_box">
+                                            <select id="select_size" class="select_ui" style="width:165px">
+                                                <option value="0">SIZE 선택</option>
+                                                <option value="1">소 500 x 3,000</option>
+                                                <option value="2">중 900 x 5,000</option>
+                                                <option value="3">대 1,500 x 8,000</option>
+                                                <option value="4">이 외 비규격 처리</option>
+                                            </select>
+                                        </div>
+                                        <div class="select_ui_box">
+                                            <select id="select_case" class="select_ui" style="width:225px">
+                                                <option value="0">CASE 선택</option>
+                                                <option value="1">[L]Headline Only</option>
+                                                <option value="2">[L]Headline + Footer</option>
+                                                <option value="3">[L]Header + Headline</option>
+                                                <option value="4">[L]Header + Headline + Footer</option>
+                                                <!--
+                                                <option value="5">[L]2 Headlines</option>
+                                                <option value="6">[L]Header + 2 Headlines</option>
+                                                <option value="7">[L]2 Headlines + Footer</option>
+                                                <option value="8">[L]Header + 2 Headlines + Footer</option>
+                                                //-->
+                                                <option value="9">[R]Headline Only</option>
+                                            </select>
+                                        </div>
+                                        <div class="adjust_size"><span id="spn_man">→ 길이조정 : 중 900 * <input type="text" id="inp_width" class="inp_txt" style="width:86px" value="3000" /></span><a href="javascript:void(0)" onclick="setCanvas();" class="btn_st">프리뷰 적용</a></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">제목</th>
+                                <td colspan="3"><input type="text" class="inp_txt" style="width:100%;" /></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">사용기간</th>
+                                <td>
+                                    <span class="calendar_ui"><input type="text" id="SetDate1" class="inp_txt" style="width:148px;" /><a href="#none" id="BtnDate1" class="btn_calendar">시작날짜</a></span> ~
+                                    <span class="calendar_ui"><input type="text" id="SetDate2" class="inp_txt" style="width:148px;" /><a href="#none" id="BtnDate2" class="btn_calendar">종료날짜</a></span>
+                                </td>
+                                <th scope="row">위치</th>
+                                <td><input type="text" class="inp_txt" style="width:100%;" value="두산타워 현관" /></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">수량</th>
+                                <td><input type="text" class="inp_txt" style="width:148px;" value="5" /></td>
+                                <th scope="row">처리요청기한</th>
+                                <td class="td_request_date">
+                                    <span class="calendar_ui"><input type="text" id="SetDate3" class="inp_txt" style="width:148px;" /><a href="#none" id="BtnDate3" class="btn_calendar">시작날짜</a></span>
+                                    <div class="select_ui_box">
+                                        <select class="select_ui" style="width:118px">
+                                            <option>09:00</option>
+                                            <option>10:00</option>
+                                        </select>
+                                    </div>
+                                    <div class="checkbox_ui">
+                                        <p><input type="checkbox" id="emergency" /><label for="emergency">긴급</label></p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="setting_table" style="display:none;">
+                        <table>
+                            <colgroup>
+                                <col style="width:120px;" />
+                                <col />
+                            </colgroup>
+                            <tbody id="attr">
+                                <tr>
+                                    <th scope="row" rowspan="3">내용</th>
+                                    <td>
+                                        <div class="txt_product_content">
+                                            <em>Headline </em><input type="text" class="inp_txt" placeholder="기본텍스트가 들어갑니다." />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="txt_product_content">
+                                            <em>Headline2 </em><input type="text" class="inp_txt" placeholder="기본텍스트가 들어갑니다." />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="txt_product_content">
+                                            <em>Footer </em><input type="text" class="inp_txt" placeholder="기본텍스트가 들어갑니다." />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table id="table_preview">
+                            <colgroup>
+                                <col />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <td class="td_preview">
+                                        <div class="preview_wrap">
+                                            <em class="preview_tit">Preview</em>
+                                            <div id="preview_prd" class="preview_prd">
+                                                <img src="../resources/images/product/@temp_img_product.jpg" alt="" />
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div><!-- setting_table -->
+                </div><!-- table_form_type_01 -->
+
+            </div>
+            <!-- //contents -->
+        </div>
+        <!-- //container -->
+        <div id="footer">푸터</div>
+        <!-- //footer -->
+
+    </div>
+    <!-- //wrap -->
+</body>
+</html>
+<link href="../resources/js/jquery-ui.min.css" rel="stylesheet" />
+
+<script src="../resources/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+var rooturl = "/BrandCenter/";
+var DateFormat_jQuery = "yy-mm-dd";
+
+$(document).ready(
+	function () {
+		initForm();
+		loadXML();
+	}
+);
+
+
+
+$(function () {
+	$("#datepicker1").datepicker({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		changeMonth: true,
+		changeYear: true,
+		yearSuffix: '년'
+	});
+});
+
+function initForm() {
+	$("#SetDate1").datepicker({
+		showOn: "focus",
+		buttonImageOnly: false,
+		prevText: '<',
+		nextText: '>',
+		dateFormat: DateFormat_jQuery,
+		showMonthAfterYear: true,
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: false //오늘 닫기
+	}).attr('readonly', 'readonly');
+	$('#BtnDate1').click(function() {
+		$("#SetDate1").datepicker("show");
+	});
+	$("#SetDate2").datepicker({
+		showOn: "focus",
+		buttonImageOnly: false,
+		prevText: '<',
+		nextText: '>',
+		dateFormat: DateFormat_jQuery,
+		showMonthAfterYear: true,
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: false  //오늘 닫기
+	}).attr('readonly', 'readonly');
+	$('#BtnDate2').click(function() {
+		$("#SetDate2").datepicker("show");
+	});
+	$("#SetDate3").datepicker({
+		showOn: "focus",
+		buttonImageOnly: false,
+		prevText: '<',
+		nextText: '>',
+		dateFormat: DateFormat_jQuery,
+		showMonthAfterYear: true,
+		changeMonth: true,
+		changeYear: true,
+		showButtonPanel: false  //오늘 닫기
+	}).attr('readonly', 'readonly');
+	$('#BtnDate3').click(function() {
+		$("#SetDate3").datepicker("show");
+	});
+}
+
+var sizeText = "";
+var maxWidth = 0; //최대 사이즈
+var minWidth = 0; //최소 사이즈
+var minHeight = 0;
+var maxHeight = 0;
+var doc_width = 0; //제작물 가로사이즈
+var doc_height = 0; //제작물 세로사이즈
+var settingData = {}; //선택된 케이스에 따른 설정값
+var output_type = 0; //0:현수막 , 1:배너
+var concreteContainer;
+var wrapper;
+var baseLayer;
+var backgroundLayer;
+var imageLayer;
+var cWidth;
+var cHeight;
+var layerArr = [];
+
+var dataArr = []; //임시 데이터 하드코딩
+
+//--
+var gdata = null;
+function loadXML() {
+	$.ajax({
+		url: "new_apply_user_data.xml",
+		dataType: "xml",
+		success: function (xml) {
+			//gdata = $(xml);
+			gdata = $.xml2json(xml, false);
+			setSizeList('placard');
+			$('#select_size').trigger('change');
+			setCaseList(1);
+		}
+	});
+}
+$("input[name=size]").change(function() {
+	var val = $(this).val();
+	setSizeList($(this).val());
+	setCaseList(1);
+	//reset
+	$('#select_size option:eq(0)').prop("selected", true);
+	$('#select_size').trigger('change');
+	$('#select_case option:eq(0)').prop("selected", true);
+	$('#select_case').trigger('change');
+});
+//--
+function setSizeList(value) {
+	//set size combobox - TODO : 동적생성
+	$("#select_size").html('');
+	switch (value)
+	{
+	case "placard":
+		output_type = 0;
+		$("#select_size").html('<option value="0">SIZE 선택</option><option value="1">소 500 x 3,000</option><option value="2">중 900 x 5,000</option><option value="3">대 1,500 x 8,000</option><option value="4">이 외 비규격 처리</option>');
+		break;
+	case "banner":
+		output_type = 1;
+		$("#select_size").html('<option value="0">SIZE 선택</option><option value="1">세로문구 600x1800</option><option value="2">가로문구 600x1800</option><option value="4">이 외 비규격 처리</option>');
+		break;
+	}
+}
+
+function setCaseList(value) {
+	//set case combobox
+	$("#select_case").html('');
+	var len = gdata["#document"].root.category[output_type].size[value].item.length;
+	var str = "";
+	for (var i=0; i<len; i++) {
+		str += '<option value="'+i+'">'+gdata["#document"].root.category[output_type].size[value].item[i].template_case+'</option>'
+	}
+	$("#select_case").html(str);
+}
+$('#select_size').bind('change',function() {
+	//사이즈 선택 시 호출 -- TODO 연동
+	var str = "→ 길이조정 : ";
+	var dt;
+	if ($(this).val() == "0") {
+		str = "→ SIZE를 선택해 주세요.";
+	} else if ($(this).val() != "4") {
+		if (gdata["#document"].root.category[output_type].size[$(this).val()])
+		{
+			dt = gdata["#document"].root.category[output_type].size[$(this).val()];
+		} else {
+			dt = gdata["#document"].root.category[output_type].size[1];
+		}
+		sizeText = dt.size_text;
+		minWidth = dt.min_width;
+		maxWidth = dt.max_width;
+		minHeight = dt.min_height;
+		maxHeight = dt.max_height;
+		doc_width = dt.doc_width;
+		doc_height = dt.doc_height;
+		//str += sizeText + ' '+doc_height+' * <input type="text" id="inp_width" class="inp_txt" style="width:86px" value="'+doc_width+'" />';
+		str += sizeText + ' ';
+		if (minHeight == maxHeight) {
+			str += doc_height;
+		} else {
+			str += '<input type="text" id="inp_height" class="inp_txt" style="width:63px" value="'+doc_height+'" />';
+		}
+		str += ' * ';
+		if (minWidth == maxWidth) {
+			str += doc_width;
+		} else {
+			str += '<input type="text" id="inp_width" class="inp_txt" style="width:86px" value="'+doc_width+'" />';
+		}
+	} else {
+		sizeText = "비규격";
+		minWidth = 0;
+		maxWidth = 999999999999;
+		minHeight = 0;
+		maxHeight = 999999999999;
+		doc_width = 0;
+		doc_height = 0;
+		str += sizeText + ' <input type="text" id="inp_height" class="inp_txt" style="width:63px" value="0" /> * <input type="text" id="inp_width" class="inp_txt" style="width:63px" value="0" />';
+	}
+	/*
+	switch ($(this).val())
+	{
+	case "1":
+		sizeText = "소";
+		minWidth = 3000;
+		maxWidth = 10000;
+		doc_width = 3000;
+		doc_height = 500;
+		str += sizeText + ' '+doc_height+' * <input type="text" id="inp_width" class="inp_txt" style="width:86px" value="3000" />';
+		break;
+	case "2":
+		sizeText = "중";
+		minWidth = 5000;
+		maxWidth = 10000;
+		doc_width = 5000;
+		doc_height = 900;
+		str += sizeText + ' '+doc_height+' * <input type="text" id="inp_width" class="inp_txt" style="width:86px" value="5000" />';
+		break;
+	case "3":
+		sizeText = "대";
+		minWidth = 8000;
+		maxWidth = 16000;
+		doc_width = 8000;
+		doc_height = 1500;
+		str += sizeText + ' '+doc_height+' * <input type="text" id="inp_width" class="inp_txt" style="width:86px" value="8000" />';
+		break;
+	case "4":
+		sizeText = "비규격";
+		minWidth = 0;
+		maxWidth = 999999999999;
+		doc_width = 0;
+		doc_height = 0;
+		str += sizeText + ' <input type="text" id="inp_height" class="inp_txt" style="width:63px" value="900" /> * <input type="text" id="inp_width" class="inp_txt" style="width:63px" value="3000" />';
+		break;
+	}
+	*/
+	//→ 길이조정 : 중 900 * <input type="text" id="inp_width" class="inp_txt" style="width:86px" />
+	$('#spn_man').html(str);
+
+});
+
+function setCanvas() {
+	//프리뷰적용 버튼 클릭 시 호출
+	var sizeType = $("#select_size").val();
+	var sizeCase = $("#select_case").val();
+	if (sizeType != "4") {
+		if (sizeType == "0" || sizeCase == "0")
+		{
+			alert("유형 및 규격을 선택해 주세요.");
+			return;
+		}
+	}
+	//--
+	if ($('#inp_width').val())
+	{
+		if ($('#inp_width').val()*1 < minWidth || $('#inp_width').val()*1 > maxWidth)
+		{
+			alert("규격사이즈에 맞지 않습니다.\n"+minWidth+" 부터 " + maxWidth + " 사이의 값을 입력해 주세요.");
+			return;
+		}
+		if ($('#inp_width').val() % 500 != 0)
+		{
+			alert("길이 입력은 500단위로 입력 가능합니다.");
+			var temp = $('#inp_width').val();
+			temp = Math.floor(temp/500) * 500;
+			$('#inp_width').val(temp);
+			return;
+		}
+	}
+	if ($('#inp_height').val())
+	{
+		if ($('#inp_height').val()*1 < minHeight || $('#inp_height').val()*1 > maxHeight)
+		{
+			alert("규격사이즈에 맞지 않습니다.\n"+minHeight+" 부터 " + maxHeight + " 사이의 값을 입력해 주세요.");
+			return;
+		}
+		/*
+		if ($('#inp_height').val() % 500 != 0)
+		{
+			alert("길이 입력은 500단위로 입력 가능합니다.");
+			var temp = $('#inp_height').val();
+			temp = Math.floor(temp/500) * 500;
+			$('#inp_height').val(temp);
+			return;
+		}
+		*/
+	}
+	var cf = confirm("입력하신 사항으로 설정합니다.\n변경된 사항은 저장되지 않습니다.");
+	if (!cf)
+	{
+		return;
+	}
+	if (sizeType == "4") {
+		//비규격 시 Preview 화면 감춤
+		//$('#table_preview').hide();
+		$("#setting_table").hide();
+		return;
+	} else {
+		//$('#table_preview').show();
+		$("#setting_table").show();
+	}
+	//--
+	if (gdata["#document"].root.category[output_type].size[sizeType].item) {
+		dataArr = gdata["#document"].root.category[output_type].size[sizeType].item;
+	} else {
+		dataArr = gdata["#document"].root.category[output_type].size[1].item;
+	}
+	settingData = dataArr[sizeCase];
+	if ($('#inp_width').val())
+	{
+		doc_width = $('#inp_width').val();
+	}
+	if ($('#inp_height').val())
+	{
+		doc_height = $('#inp_height').val();
+	}
+
+	var iw = doc_width *1;
+	var ih = doc_height * 1;
+	var ratio = iw/ih;
+	//--
+	if (iw>=ih) {
+		if (ratio > 6) {
+			ratio = 150/ih;
+			cWidth = iw * ratio;
+			cHeight = 150;
+		} else {
+			ratio = 910/iw;
+			cWidth = 910;
+			cHeight = ih * ratio;
+		}
+	} else {
+		if (ratio < 0.16)
+		{
+			ratio = 150/iw;
+			cWidth = 150;
+			cHeight = ih * ratio;
+		} else {
+			ratio = 910/ih;
+			cWidth = iw * ratio;
+			cHeight = 910;
+		}
+	}
+	//--
+	//console.log("width : " + cWidth + " : height : " + cHeight);
+
+	$('#preview_prd').html();
+
+	concreteContainer = document.getElementById('preview_prd');
+	wrapper = new Concrete.Wrapper({
+		width: cWidth,
+		height: cHeight,
+		container: concreteContainer
+	});
+	baseLayer = new Concrete.Layer();
+	backgroundLayer = new Concrete.Layer();
+	imageLayer = new Concrete.Layer();
+	wrapper.add(baseLayer).add(backgroundLayer).add(imageLayer);
+
+	//wrapper.setSize(cWidth, cHeight);
+	//temp
+	var ctx = backgroundLayer.sceneCanvas.context;
+	ctx.fillStyle = $(':radio[name="bg_color"]:checked').val();;
+	ctx.fillRect(0, 0, cWidth, cHeight);
+	//
+	if (settingData.bg_image) {
+		var ctx = imageLayer.sceneCanvas.context;
+		ctx.clearRect(0, 0, cWidth, cHeight);
+		var background = new Image();
+		background.onload = function() {
+			//--
+			switch (settingData.img_pos)
+			{
+			case "left":
+				var rt = cHeight/background.height;
+				ctx.drawImage(background, 0, 0, background.width, background.height, 0, 0, background.width * rt, cHeight);
+				break;
+			case "right":
+				var rt = cHeight/background.height;
+				ctx.drawImage(background, 0, 0, background.width, background.height, cWidth-background.width * rt, 0, background.width * rt, cHeight);
+				break;
+			case "top":
+				var rt = cWidth/background.width;
+				ctx.drawImage(background, 0, 0, background.width, background.height, 0, 0, cWidth, background.height * rt);
+				break;
+			case "bottom":
+				var rt = cWidth/background.width;
+				ctx.drawImage(background, 0, 0, background.width, background.height, 0, cHeight-background.height * rt, cWidth, background.height * rt);
+				break;
+			}
+			//--
+		}
+		background.src = settingData.bg_image;
+	}
+
+	layerArr = [];
+	//setting layer
+	var layer_data;
+	var str = '';
+	for (var i=0; i<settingData.num_of_layer; i++)
+	{
+		if (settingData.num_of_layer == 1) {
+			layer_data = settingData.layer_data;
+		} else {
+			layer_data = settingData.layer_data[i];
+		}
+
+		var layer = new Concrete.Layer();
+		wrapper.add(layer);
+
+		var obj = new TextObject();
+		obj.label = layer_data.label;
+		obj.x = layer_data.x;
+		obj.y = layer_data.y;
+		obj.font_color = layer_data.font_color;
+		obj.font_size = layer_data.font_size;
+		obj.font_align = layer_data.font_align;
+		obj.default_text = layer_data.default_text;
+		obj.text_direction = layer_data.text_direction;
+		obj.init(layer, layer.sceneCanvas, layer.sceneCanvas.context);
+		obj.render();
+		layerArr.push(obj);
+
+		str += '<tr>';
+		if (i == 0)
+		{
+			str += '<th scope="row" rowspan="'+settingData.num_of_layer+'">내용</th>'
+		}
+		str += '<td>';
+		str += '<div class="txt_product_content">';
+		str += '<em>'+layer_data.label+' </em><input type="text" id="defTxt'+i+'" class="inp_txt" value="'+obj.default_text+'" onkeyup="changeText(this)" />';
+		str += '</div>';
+		str += '</td>';
+		str += '</tr>';
+	}
+	$('#attr').html(str);
+	//--
+}
+function changeText(itext) {
+	//input text 변경 시 호출
+	var id = itext.id.split("defTxt").join("");
+	var obj = layerArr[id];
+	var cache = obj.default_text;
+	obj.default_text = itext.value;
+	obj.render();
+	//--
+	if (obj.text_direction == 0) {
+		if (obj.width > cWidth - 340) {
+			alert("최대 글자 수를 초과하였습니다.\n입력하신 내용 또는 템플릿 설정을 변경해 주세요.");
+			obj.default_text = cache;
+			$(itext).val(cache);
+			obj.render();
+		}
+	} else if (obj.text_direction == 1) {
+		console.log(obj.height + " : " + (cHeight));
+		if (obj.height > cHeight - 340) {
+			alert("최대 글자 수를 초과하였습니다.\n입력하신 내용 또는 템플릿 설정을 변경해 주세요.");
+			obj.default_text = cache;
+			$(itext).val(cache);
+			obj.render();
+		}
+	}
+	//--
+}
+function downloadToImage() {
+	//캔버스 화면 이미지로 저장 (테스트용)
+	var context = baseLayer.sceneCanvas.context;
+	context.clearRect(0,0,5000,5000);
+	context.drawImage(backgroundLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	context.drawImage(imageLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	for (var i=0; i<settingData.num_of_layer; i++)
+	{
+		var layer = layerArr[i].layer;
+		context.drawImage(layer.canvas, 0, 0, cWidth, cHeight);
+	}
+	// to file
+	var date = new Date();
+	baseLayer.sceneCanvas.download({
+		fileName: 'sample_'+date.getTime()+'.png'
+	});
+}
+function canvasToImage() {
+	var context = baseLayer.sceneCanvas.context;
+	context.clearRect(0,0,5000,5000);
+	context.drawImage(backgroundLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	context.drawImage(imageLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	for (var i=0; i<settingData.num_of_layer; i++)
+	{
+		var layer = layerArr[i].layer;
+		context.drawImage(layer.canvas, 0, 0, cWidth, cHeight);
+	}
+	// to image
+	baseLayer.sceneCanvas.toImage(function(image) {
+		console.log('canvasToImage : ' + image);
+		return image;
+	});
+}
+function saveToData() {
+	//설정된 데이터값 저장
+	//TODO : validation
+	var finalData = new Object();
+
+	//이미지 merge
+	var context = baseLayer.sceneCanvas.context;
+	context.clearRect(0,0,5000,5000);
+	context.drawImage(backgroundLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	context.drawImage(imageLayer.sceneCanvas.canvas, 0, 0, cWidth, cHeight);
+	for (var i=0; i<settingData.num_of_layer; i++)
+	{
+		var layer = layerArr[i].layer;
+		context.drawImage(layer.canvas, 0, 0, cWidth, cHeight);
+	}
+
+	//이미지 업로드
+	//ref :: http://www.dotnetfunda.com/articles/show/1662/saving-html-5-canvas-as-image-on-the-server-using-aspnet
+	var dataURL = baseLayer.sceneCanvas.canvas.toDataURL('image/png');
+	dataURL = dataURL.replace('data:image/png;base64,', '');
+	$.ajax({
+		type: "POST",
+		url: "upload_url.aspx", //upload url
+		contentType: 'application/json; charset=utf-8',
+		data: '{ "imageData" : "' + dataURL + '" }',
+		dataType: 'json',
+		success : function(msg) {
+			//이미지 업로드 완료, 아래 데이터 정리
+			finalData.use_type = $(':radio[name="use_000001"]:checked').val(); //용도
+			finalData.type_output = $(':radio[name="size"]:checked').val(); //유형 - 현수막/배너
+			finalData.type_size = $('#select_size').val(); //유형 - 사이즈 선택
+			finalData.type_case = $('#select_case').val(); //유형 - Case 선택
+			finalData.type_width = doc_width; //유형 - 너비
+			finalData.type_height = doc_height; //유형 - 높이
+			finalData.title = $('#inp_title').val(); //제목
+			finalData.period_start = $('#inp_start').val(); //사용기간 - 시작일
+			finalData.period_end = $('#inp_end').val(); //사용기간 - 종료일
+			finalData.use_loc = $('#inp_loc').val(); //위치
+			finalData.use_cnt = $('#inp_cnt').val(); //수량
+			finalData.req_date = $('#inp_req_date').val(); //처리요청기한 - 일자
+			finalData.req_time = $('#sel_req_time').val(); //처리요청기한 - 시간
+			finalData.req_emer = $("input:checkbox[id='emergency']").is(":checked") //처리요청기한 - 긴급여부 true/false
+			//내용 (lablel : 라벨명, text : 내용)
+			finalData.contents = [];
+			finalData.num_of_layer = layerArr.length;
+			for (var i=0; i<finalData.num_of_layer; i++)
+			{
+				finalData.contents[i] = {};
+				finalData.contents[i].label = layerArr[i].default_text;
+				finalData.contents[i].text = layerArr[i].default_text;
+			}
+			finalData.image = msg; //이미지URL (서버리턴값)
+			alert("결재요청이 완료되었습니다.");
+		}
+	});
+}
+</script>

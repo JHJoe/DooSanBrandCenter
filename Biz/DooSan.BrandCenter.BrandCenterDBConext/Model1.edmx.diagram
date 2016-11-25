@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="55b7f6caca194ae481274d6ba24dfb40" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Company" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Dept" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Duty" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Job" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_Rank" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_User" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_UserLang" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblButton" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCIApprove" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCIApproveFiles" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCIApproveReview" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCIApproveReviewFiles" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblCodeMaster" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroup" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupButton" Width="1.5" PointX="8.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupMenu" Width="1.5" PointX="10.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblGroupUser" Width="1.5" PointX="12.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblLoginHistory" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblUser" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_AdditionalJob" Width="1.5" PointX="4.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.TB_DEPT_EX" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tb_DeptLang" Width="1.5" PointX="4.625" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.TB_USER_EX" Width="1.5" PointX="8.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblLogging" Width="1.5" PointX="10.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblMenu" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD" Width="1.5" PointX="19.625" PointY="8.875" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD_CATEGORY" Width="1.5" PointX="17.375" PointY="9.25" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD_CNT" Width="1.5" PointX="21.875" PointY="6.25" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD_COMMENT" Width="1.5" PointX="21.875" PointY="12.125" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD_COMMENT_LIKE" Width="1.5" PointX="24.125" PointY="12.5" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BOARD_LIKE" Width="1.5" PointX="21.875" PointY="8.875" />
+        <AssociationConnector Association="BrandCenterModel.R_10" />
+        <AssociationConnector Association="BrandCenterModel.R_5" />
+        <AssociationConnector Association="BrandCenterModel.R_6" />
+        <AssociationConnector Association="BrandCenterModel.R_8" />
+        <AssociationConnector Association="BrandCenterModel.R_9" />
+        <EntityTypeShape EntityType="BrandCenterModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.TBL_BANNERMAKER" Width="1.5" PointX="0.75" PointY="17.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblPreset" Width="1.5" PointX="17.75" PointY="17" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblPresetTextBox" Width="1.5" PointX="20" PointY="18" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblStatusGroupMapp" Width="1.5" PointX="17.75" PointY="5.75" />
+        <AssociationConnector Association="BrandCenterModel.FK_tblPresetTextBox_tblPreset" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblBanner" Width="1.5" PointX="13.375" PointY="18.75" />
+        <EntityTypeShape EntityType="BrandCenterModel.tblFiles" Width="1.5" PointX="19.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<h2>Login</h2>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h4>test login</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2"> GroupId</label>
+            <div class="col-md-10">
+                <br/>
+                <br />
+                <br />
+                <br />
+
+                @Html.DropDownList("LoginUserId", new List<SelectListItem>
+                {
+                    new SelectListItem{ Value =@"DSG\admin", Text = "admin" },
+                    new SelectListItem{ Value =@"DSG\user1", Text = "사용자1" },
+                    new SelectListItem{ Value =@"DSG\user2", Text = "사용자2" },
+                    new SelectListItem{ Value =@"DSG\CIUser", Text = "CI담당자" },
+                    new SelectListItem{ Value =@"DSG\Design", Text = "디자인담당" },
+                    new SelectListItem{ Value =@"DSG\GroupCI", Text = "그룹CI" },
+                    new SelectListItem{ Value =@"DSG\ManagerThirdparty", Text = "제작업체담당자" },
+                    new SelectListItem{ Value =@"DSG\thirdparty", Text = "제작업체A" }
+                })
+                @Html.ValidationMessage("LoginUserId", "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default"  formaction='@Url.Action("LoginSubmit")' />
+            </div>
+        </div>
+    </div>
+
+}

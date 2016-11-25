@@ -15,20 +15,32 @@ using BrandCenter.ViewModels;
 using DooSan.BrandCenter.FrameWork.Utils;
 using System.Data.Entity.Validation;
 using BrandCenter.Helper;
+using DooSan.BrandCenter.FrameWork.DbContextFactory;
 
 namespace BrandCenter.Controllers
 {
-    public class AdminController : Base.BaseController
+    public partial class AdminController : Base.BaseController
     {
-        private BrandCenter.DAL.BrandCenterContext db = new BrandCenter.DAL.BrandCenterContext();
         //private DefaultContext dbcnxt;// = new DefaultContext();
         // private GroupTest dbtest = new GroupTest();
         //상속샘플
         //private DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities dbEntities = new DooSan.BrandCenter.BrandCenterDBConext.BrandCenterEntities();
+
+         //scoptfactory용 - 현 프로젝트에선 사용하지 않음
+        public AdminController()
+        {
+        }
+
+        //ninject용
         public AdminController(DefaultContext db) : base(db)
         {
-            //dbcnxt = db; //샘플 생성자. 평소엔 생략
         }
+
+
+        //public AdminController(IDbContextScopeFactory dbContextScopeFactory) : base(db)
+        //{
+        //}
+
 
         #region 조회샘플
         // GET: Admin
@@ -49,8 +61,19 @@ namespace BrandCenter.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var group = from s in _db.tblGroup
-                           select s;
+            //var group = from s in _db.tblGroup
+            //              select s;
+
+            using (var dbContextScope = _dbContextScopeFactory.Create())
+            {
+                var db = dbContextScope.DbContexts.Get<DefaultContext>();
+
+                var group = from s in db.tblGroup
+                            select s;
+
+            
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 group = group.Where(s => s.Name.Contains(searchString)
@@ -78,6 +101,7 @@ namespace BrandCenter.Controllers
             ViewBag.Page = pageNumber;
 
             return View(group.ToPagedList(pageNumber, pageSize));
+            }
         }
 
         public ViewResult GroupList(string sortOrder, string currentFilter, string searchString, int? page)

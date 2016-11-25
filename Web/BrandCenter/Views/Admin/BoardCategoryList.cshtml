@@ -1,0 +1,173 @@
+﻿@using DooSan.BrandCenter.Biz.Boards.Models
+@model VM_BoardCategoryList
+@{
+    ViewBag.Title = "BoardCategoryList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+<script src="~/Scripts/Ajax.common.js"></script>
+<script src="~/Scripts/Ajax.validate.v01.js"></script>
+<script type="text/javascript">
+    var AjaxBC = {};
+
+    AjaxBC.callPartial = function (params) {
+        var helper = new BreandCenterHelper();
+        var url = params.Url;
+
+        helper.DoAjaxAsync(url, params, AjaxBC.callback, AjaxBC.errorFunc);
+    }
+
+    AjaxBC.callback = function (e) {
+        if (e == null)
+            return;
+
+        if (e.RTN == "Y") {
+            alert("처리되었습니다");
+            location.href = "/Admin/BoardCategoryList";
+        }
+        else {
+            alert("[Error] " + e.RTN + " [Message] : " + e.MESSAGE);
+        }
+    }
+
+    AjaxBC.errorFunc = function (e) {
+        var a = 0;
+        alert("Error : " + e);
+    }
+
+    $(document).ready(function () {
+        $('#btnSave').on('click', function () {
+            var params = {};
+
+            params.Url = "BoardCategoryEdit";
+
+            if (!$(":input:radio[name=CATEGORY_IDX]").validate("게시판카테고리", true, {})) { return false; }
+
+            params.CATEGORY_IDX = $(":input:radio[name=CATEGORY_IDX]:checked").val();
+
+            if (!$(":input:radio[name='" + params.CATEGORY_IDX + "|USE_YN']").validate("게시판사용여부", true, {})) { return false; }
+            if (!$("[name='" + params.CATEGORY_IDX + "|BOARD_ORDER']").validate("순서", true, { numeric: true, minLength: 0, maxLength: 3 })) { return false; }
+
+            params.USE_YN = $(":input:radio[name='" + params.CATEGORY_IDX + "|USE_YN']:checked").val();
+            params.BOARD_ORDER = $("[name='" + params.CATEGORY_IDX + "|BOARD_ORDER']").val();
+
+            if (params.BOARD_ORDER == '0')
+            {
+                alert("0은 사용할 수 없습니다.");
+                return false;
+            }
+            else
+            {
+                var orderYN = false;
+                $("input[id*=BOARD_ORDER]").each(function () {
+
+                    if ($(this).attr("id").replace('|BOARD_ORDER', "") != params.CATEGORY_IDX)
+                    {
+                        var order = $(this).val();
+                        if (params.BOARD_ORDER == order) {
+                            orderYN = true;
+                        }
+                    }
+                });
+
+                if (orderYN == true)
+                {
+                    alert("순서가 겹치는 게시판이 있습니다.");
+                    return false;
+                }
+            }
+
+            //alert("저장");
+            AjaxBC.callPartial(params);
+        });
+        $('#btnDel').on('click', function () {
+            var params = {};
+
+            if (!$(":input:radio[name=CATEGORY_IDX]").validate("게시판카테고리", true, {})) { return false; }
+
+            if (confirm("삭제하시겠습니까??") == true) {    //확인
+
+                params.Url = "BoardCategoryDel";
+                params.CATEGORY_IDX = $(":input:radio[name=CATEGORY_IDX]:checked").val();
+
+                //alert("삭제");
+                AjaxBC.callPartial(params);
+            } else {   //취소
+                return;
+            }
+        });
+        $('#btnReg').on('click', function () {
+            location.href = "/Admin/BoardCategoryReg";
+        });
+    });
+</script>
+}
+<div id="contents" class="board_admin_list">
+    <h3 class="page_title">게시판 관리</h3>
+
+    <div class="btn_wrap">
+        <div class="fl">
+            <a href="#none" class="btn_st" id="btnReg">등록</a>
+            <a href="#none" class="btn_st" id="btnSave">저장</a>
+            <a href="#none" class="btn_st" id="btnDel">삭제</a>
+        </div>
+    </div><!--btn_wrap-->
+
+    <div class="table_form_02">
+        <table>
+            <colgroup>
+                <col style="width:64px;" />
+                <col style="width:190px;" />
+                <col style="width:90px;" />
+                <col style="width:90px;" />
+                <col />
+                <col style="width:90px;" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">선택</th>
+                    <th scope="col">게시판사용여부</th>
+                    <th scope="col">순서조정</th>
+                    <th scope="col">타입</th>
+                    <th scope="col">게시판명</th>
+                    <th scope="col">등록일</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (!Model.BoardCategoryList.Count.Equals(0))
+                    {
+                        foreach (BoardCategory item in Model.BoardCategoryList)
+                        {
+                            <tr>
+                                <td class="ta_c">
+                                    <div class="checkbox_ui">
+                                        <p>
+                                            @Html.RadioButton("CATEGORY_IDX", item.CATEGORY_IDX, false, new { @id= item.CATEGORY_IDX+"|CATEGORY_IDX" })
+                                        </p>
+                                    </div>
+                                </td>
+                                <td class="ta_c">
+                                    <div class="radio_ui">
+                                        <p>@Html.RadioButton(item.CATEGORY_IDX + "|USE_YN", "Y", item.USE_YN.Equals("Y") ? true : false, new { @id = item.CATEGORY_IDX + "|USE_YNY" })<label for="@item.CATEGORY_IDX|USE_YNY">노출</label></p>
+                                        <p>@Html.RadioButton(item.CATEGORY_IDX + "|USE_YN", "N", item.USE_YN.Equals("N") ? true : false, new { @id = item.CATEGORY_IDX + "|USE_YNN" })<label for="@item.CATEGORY_IDX|USE_YNN">비노출</label></p>
+                                    </div>
+                                </td>
+                                <td class="ta_c"><input type="text" class="inp_txt" style="width:66px;" id="@item.CATEGORY_IDX|BOARD_ORDER" name="@item.CATEGORY_IDX|BOARD_ORDER" value="@item.BOARD_ORDER" /></td>
+                                <td class="ta_c">@item.TYPE_NAME</td>
+                                <td>@Html.ActionLink(item.BOARD_NAME, "BoardCategoryEdit/" + item.CATEGORY_IDX) </td>
+                                <td class="ta_c">@item.INPUT_DATE.Value.ToString("yyyy.MM.dd")</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

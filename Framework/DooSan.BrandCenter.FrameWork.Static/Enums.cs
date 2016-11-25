@@ -44,4 +44,29 @@ namespace DooSan.BrandCenter.FrameWork.Static
         List,
         Symbol
     }
+
+
+    public enum EditType
+    {
+        Create,
+        Update,
+        View
+    }
+
+
+
+    //    public enum RoleGroupType
+    //    {
+    //        Admin = 1,
+    //        User = 2,
+    //        자회사CI담당 = 3,
+    //그룹사CI담당 =         4,
+    //제작업체담당 =          5,
+    //제작업체    =           6,
+    //디자인담당   =          7
+    //    }
+
+
+
+
 }

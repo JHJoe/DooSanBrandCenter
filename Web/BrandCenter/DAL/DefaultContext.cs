@@ -1,10 +1,11 @@
-﻿namespace BrandCenter.Models
+﻿namespace BrandCenter.DAL
 {
     using System;
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
     using System.Data.Entity.ModelConfiguration.Conventions;
+    using Models;
 
     [DbConfigurationType(typeof(Migrations.DisableConfiguration))]
     public class DefaultContext : DbContext
@@ -24,10 +25,13 @@
         public virtual DbSet<tblGroup> tblGroup { get; set; }
         public virtual DbSet<tblGroupUser> tblGroupUser { get; set; }
         public virtual DbSet<CodeMaster> tblCodeMaster { get; set; }
+        public DbSet<tblBanner> tblBanner { get; set; }
+        public virtual DbSet<tblStatusGroupMapp> tblStatusGroupMapp { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<System.Data.Entity.Infrastructure.IncludeMetadataConvention>();
 
             //modelBuilder.Entity<tblGroup>()
             //    .Property(e => e.Name)

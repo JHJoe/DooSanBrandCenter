@@ -8,6 +8,9 @@ namespace DooSan.BrandCenter.FrameWork.Static
 {
     public class Constants
     {
+        //△	▲	▽	▼
+        public static string AscendingArrow = "▲";
+        public static string DescendingArrow = "▼";
 
     }
 }

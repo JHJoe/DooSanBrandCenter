@@ -14,10 +14,10 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
     
     public partial class tblGroup
     {
+        public short GroupId { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
         public string test { get; set; }
-        public short GroupId { get; set; }
         public string test2 { get; set; }
     }
 }

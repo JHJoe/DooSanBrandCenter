@@ -1,4 +1,5 @@
-﻿using BrandCenter.Models;
+﻿using BrandCenter.DAL;
+using BrandCenter.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

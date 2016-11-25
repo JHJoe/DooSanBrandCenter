@@ -1,4 +1,7 @@
-﻿using BrandCenter.Models;
+﻿using BrandCenter.DAL;
+using BrandCenter.Models;
+using DooSan.BrandCenter.FrameWork.DbContextFactory;
+using DooSan.BrandCenter.FrameWork.DbContextFactory.Implementations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -11,10 +14,26 @@ namespace BrandCenter.Controllers.Base
     public class BaseController : Controller
     {
         protected DefaultContext _db;
+        protected IDbContextScopeFactory _dbContextScopeFactory;
+
         public BaseController(DefaultContext db)
         {
             _db = db;
+            _dbContextScopeFactory = SingletoneInstance.GetDbContextScopeFactory(); //GetDBContextScopeFactory();
         }
+
+        //        public BaseController(IDbContextScopeFactory ContextScopeFactory)
+        public BaseController() //ninject안쓸때는 위 생성자 주석 처리하고 상속받은곳도 다 주석처리 하고 쓰면 된다.
+        {
+            _dbContextScopeFactory = SingletoneInstance.GetDbContextScopeFactory(); //GetDBContextScopeFactory();
+        }
+
+        //protected IDbContextScopeFactory GetDBContextScopeFactory()
+        //{
+        //    DbContextScopeFactory dbContextScopeFactory = new DbContextScopeFactory();
+
+        //    return dbContextScopeFactory;
+        //}
 
         //public BaseController()
         //{
@@ -30,7 +49,16 @@ namespace BrandCenter.Controllers.Base
         //}
 
         // GET: Base
-     
+
+
+        //protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //    string actionName = filterContext.ActionDescriptor.ActionName;
+        //    string controllerName = filterContext.ActionDescriptor.ControllerDescriptor.ControllerName;
+         
+                
+        //    base.OnActionExecuting(filterContext);
+        //}
 
         protected void ThrowModelError(DbEntityValidationException e)
         {

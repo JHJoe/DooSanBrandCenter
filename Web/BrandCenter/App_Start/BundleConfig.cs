@@ -46,13 +46,18 @@ namespace BrandCenter
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css"
+                      //"~/resources/css/common.css"
+                      ));
+            bundles.Add(new StyleBundle("~/Content/BrandCentercss").Include(
+                      "~/resources/css/common.css"
+                      ));
 
 
 
 
             //이걸 켜면 datetimepicker 경로를 못찾아옴
-        //BundleTable.EnableOptimizations = true; //이거 해줘야 iis 셋팅해줄때도 스타일이 적용됨. //상관없게 수정함. 아마 stylebundle 같은 문제같은데 잘 모르겠음
+            //BundleTable.EnableOptimizations = true; //이거 해줘야 iis 셋팅해줄때도 스타일이 적용됨. //상관없게 수정함. 아마 stylebundle 같은 문제같은데 잘 모르겠음
 
         }
     }

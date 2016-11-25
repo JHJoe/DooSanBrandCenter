@@ -52,6 +52,10 @@
       <HintPath>..\..\packages\DataAnnotationsExtensions.5.0.1.16\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DooSan.BrandCenter.FrameWork.DbContextFactory, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Bin\DooSan.BrandCenter.FrameWork.DbContextFactory.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -217,40 +221,46 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AdminPartialController.cs" />
     <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\Base\BaseApiController.cs" />
     <Compile Include="Controllers\Base\BaseController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\ExpressionInterceptor.cs" />
-    <Compile Include="DAL\InterceptorTransientErrors.cs" />
-    <Compile Include="DAL\BrandCenterContext.cs" />
     <Compile Include="DAL\InterceptorLogging.cs" />
+    <Compile Include="Filters\GlobalActionFilterAttribute.cs" />
     <Compile Include="Filters\GlobalHandleErrorAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\CommonHelper.cs" />
     <Compile Include="Helper\DropDownHelper.cs" />
+    <Compile Include="Helper\Message.cs" />
     <Compile Include="Helper\GetSession.cs" />
     <Compile Include="Migrations\DisableConfiguration.cs" />
-    <Compile Include="Models\Course.cs" />
     <Compile Include="DAL\DefaultContext.cs" />
-    <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\CodeItem.cs" />
     <Compile Include="Models\GroupTest.cs" />
-    <Compile Include="Models\Instructor.cs" />
-    <Compile Include="Models\OfficeAssignment.cs" />
     <Compile Include="Models\Group.cs" />
-    <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\tblBanner.cs" />
     <Compile Include="Models\tblCodeMaster.cs" />
     <Compile Include="Models\tblGroup.cs" />
+    <Compile Include="Models\tblGroupMenu.cs" />
     <Compile Include="Models\tblGroupUser.cs" />
+    <Compile Include="Models\tblLoginHistory.cs" />
     <Compile Include="Models\tblMenu.cs" />
+    <Compile Include="Models\tblPreset.cs" />
+    <Compile Include="Models\tblPresetTextBox.cs" />
+    <Compile Include="Models\tblStatusMap.cs" />
     <Compile Include="Models\tblUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\GroupUserValidator.cs" />
     <Compile Include="Validators\GroupValidator.cs" />
+    <Compile Include="ViewModel\Banner.cs" />
+    <Compile Include="ViewModel\BannerDoingList.cs" />
     <Compile Include="ViewModel\GroupUser.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -265,14 +275,155 @@
     <Content Include="Common\Confirm.htm" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Editor\css\smart_editor2.css" />
+    <Content Include="Content\Editor\css\smart_editor2_in.css" />
+    <Content Include="Content\Editor\css\smart_editor2_items.css" />
+    <Content Include="Content\Editor\css\smart_editor2_out.css" />
+    <Content Include="Content\Editor\img\bg_b1.png" />
+    <Content Include="Content\Editor\img\bg_button.gif" />
+    <Content Include="Content\Editor\img\bg_button_left.gif" />
+    <Content Include="Content\Editor\img\bg_button_right.gif" />
+    <Content Include="Content\Editor\img\bg_find_h3.gif" />
+    <Content Include="Content\Editor\img\bg_help.gif" />
+    <Content Include="Content\Editor\img\bg_icon_tool.gif" />
+    <Content Include="Content\Editor\img\bg_line1.gif" />
+    <Content Include="Content\Editor\img\bg_quote2.gif" />
+    <Content Include="Content\Editor\img\bg_set.gif" />
+    <Content Include="Content\Editor\img\bg_text_tool.gif" />
+    <Content Include="Content\Editor\img\bg_tool2.gif" />
+    <Content Include="Content\Editor\img\editor_guideline_698.gif" />
+    <Content Include="Content\Editor\img\editor_guideline_890.gif" />
+    <Content Include="Content\Editor\img\icon_set.gif" />
+    <Content Include="Content\Editor\img\ico_extend.png" />
+    <Content Include="Content\Editor\img\ko_KR\btn_set.png" />
+    <Content Include="Content\Editor\img\ko_KR\bx_set_110302.gif" />
+    <Content Include="Content\Editor\img\ko_KR\text_tool_set.png" />
+    <Content Include="Content\Editor\img\text_tool_set2.png" />
+    <Content Include="Content\Editor\js\HuskyEZCreator.js" />
+    <Content Include="Content\Editor\js\lib\jindo2.all.js" />
+    <Content Include="Content\Editor\js\lib\jindo_component.js" />
+    <Content Include="Content\Editor\js\SE2BasicCreator.js" />
+    <Content Include="Content\Editor\js\SE2M_Configuration.js" />
+    <Content Include="Content\Editor\js\smarteditor2.js" />
+    <Content Include="Content\Editor\js\smarteditor2.min.js" />
+    <Content Include="Content\Editor\readme.txt" />
+    <Content Include="Content\Editor\release_notes.txt" />
+    <Content Include="Content\Editor\SmartEditor2.html" />
+    <Content Include="Content\Editor\SmartEditor2Skin.html" />
+    <Content Include="Content\Editor\SmartEditor2_noframe.html" />
+    <Content Include="Content\Editor\smart_editor2_inputarea.html" />
+    <Content Include="Content\Editor\smart_editor2_inputarea_ie8.html" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="product\apply_user_temp.html" />
+    <Content Include="product\apply_view_design_cehcking_manufacturers.html" />
+    <Content Include="product\apply_view_manufacturers.html" />
+    <Content Include="product\approval_request.html" />
+    <Content Include="product\approval_view_permission_user.html" />
+    <Content Include="product\approval_view_request.html" />
+    <Content Include="product\approval_view_return_user.html" />
+    <Content Include="product\complete_list.html" />
+    <Content Include="product\complete_list_design_charge.html" />
+    <Content Include="product\complete_list_manufacutrers.html" />
+    <Content Include="product\complete_list_user.html" />
+    <Content Include="product\complete_view.html" />
+    <Content Include="product\complete_view_cancel_user.html" />
+    <Content Include="product\complete_view_manufacutrers.html" />
+    <Content Include="product\complete_view_user.html" />
+    <Content Include="product\deliver_view_manufacutrers.html" />
+    <Content Include="product\design_check.html" />
+    <Content Include="product\design_rerequest.html" />
+    <Content Include="product\design_review_register.html" />
+    <Content Include="product\design_review_view.html" />
+    <Content Include="product\list_design_charge.html" />
+    <Content Include="product\list_manufacturers.html" />
+    <Content Include="product\list_user.html" />
+    <Content Include="product\new_apply_user.html" />
+    <Content Include="product\product_apply.html" />
+    <Content Include="product\product_apply_list.html" />
+    <Content Include="product\product_apply_view.html" />
+    <Content Include="product\product_content_list.html" />
+    <Content Include="product\product_content_view.html" />
+    <Content Include="product\product_mail.html" />
+    <Content Include="product\product_view_apply_user.html" />
+    <Content Include="product\product_view_manufacturers.html" />
+    <Content Include="product\view_design_charge.html" />
+    <Content Include="resources\css\common.css" />
+    <Content Include="resources\css\common_02.css" />
+    <Content Include="resources\images\common\bg_blank.png" />
+    <Content Include="resources\images\common\bg_dim.png" />
+    <Content Include="resources\images\common\bg_global_bar.gif" />
+    <Content Include="resources\images\common\bg_global_drop_arr.png" />
+    <Content Include="resources\images\common\bg_header_wrap.gif" />
+    <Content Include="resources\images\common\bg_product_step_tit_arrow.gif" />
+    <Content Include="resources\images\common\bg_progress_line.png" />
+    <Content Include="resources\images\common\bg_progress_line_on.png" />
+    <Content Include="resources\images\common\bg_progress_step.png" />
+    <Content Include="resources\images\common\bg_util_bar.gif" />
+    <Content Include="resources\images\common\btn_arrow_down.png" />
+    <Content Include="resources\images\common\btn_arrow_down_white.png" />
+    <Content Include="resources\images\common\btn_arrow_up.png" />
+    <Content Include="resources\images\common\btn_arrow_up_white.png" />
+    <Content Include="resources\images\common\btn_calendar.png" />
+    <Content Include="resources\images\common\btn_checkbox_ui.gif" />
+    <Content Include="resources\images\common\btn_checkbox_ui_disabled.gif" />
+    <Content Include="resources\images\common\btn_del.gif" />
+    <Content Include="resources\images\common\btn_del_small.gif" />
+    <Content Include="resources\images\common\btn_file_circle.png" />
+    <Content Include="resources\images\common\btn_paginate_ui_next_01.gif" />
+    <Content Include="resources\images\common\btn_paginate_ui_next_02.gif" />
+    <Content Include="resources\images\common\btn_paginate_ui_prev_01.gif" />
+    <Content Include="resources\images\common\btn_paginate_ui_prev_02.gif" />
+    <Content Include="resources\images\common\btn_radio_ui.gif" />
+    <Content Include="resources\images\common\btn_radio_ui_disabled.gif" />
+    <Content Include="resources\images\common\bu_dot_blue.png" />
+    <Content Include="resources\images\common\bu_dot_white.png" />
+    <Content Include="resources\images\common\bu_gnb_blank.gif" />
+    <Content Include="resources\images\common\bu_reply.gif" />
+    <Content Include="resources\images\common\icon_bulb.png" />
+    <Content Include="resources\images\common\icon_progress_line.png" />
+    <Content Include="resources\images\common\icon_progress_line_on.png" />
+    <Content Include="resources\images\common\icon_select_ui.png" />
+    <Content Include="resources\images\common\ico_attached_file.png" />
+    <Content Include="resources\images\common\ico_like_small.png" />
+    <Content Include="resources\images\common\logo.png" />
+    <Content Include="resources\images\common\logo_brand.png" />
+    <Content Include="resources\images\main\bg_main.jpg" />
+    <Content Include="resources\images\main\bg_main_ask.gif" />
+    <Content Include="resources\images\main\bg_main_faq.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_1.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_2.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_3.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_4.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_5.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_6.gif" />
+    <Content Include="resources\images\main\bg_main_recent_list_7.gif" />
+    <Content Include="resources\images\main\bg_progress_step.png" />
+    <Content Include="resources\images\main\img_main_slider_01.jpg" />
+    <Content Include="resources\images\product\%40temp_img_product.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_doc_01.gif" />
+    <Content Include="resources\images\product\temp_upoad_file_doc_02.gif" />
+    <Content Include="resources\images\product\temp_upoad_file_img_01.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_02.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_03.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_04.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_05.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_06.jpg" />
+    <Content Include="resources\images\product\temp_upoad_file_img_07.jpg" />
+    <Content Include="resources\js\common.js" />
+    <Content Include="resources\js\html5shiv.min.js" />
+    <Content Include="resources\js\jquery-1.8.3.min.js" />
+    <Content Include="resources\js\jquery.bxslider.min.js" />
+    <Content Include="resources\js\jquery.placeholder.min.js" />
+    <Content Include="resources\js\xml2json.js" />
     <Content Include="Scripts\Admin\GroupDetail.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\Ajax.common.js" />
+    <Content Include="Scripts\Ajax.validate.v01.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -339,9 +490,24 @@
     <Content Include="Scripts\package.json" />
     <Content Include="Views\Admin\DateTest.cshtml" />
     <Content Include="Views\Shared\_LayoutClear.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Banner\BannerRequestList.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\BoardCategoryList.cshtml" />
+    <Content Include="Views\Admin\BoardCategoryView.cshtml" />
+    <Content Include="Views\Admin\BoardCategoryReg.cshtml" />
+    <Content Include="Views\Admin\BoardCategoryEdit.cshtml" />
+    <Content Include="Views\Board\BoardCommentList.cshtml" />
+    <Content Include="Views\Board\BoardList.cshtml" />
+    <Content Include="Views\Board\BoardReg.cshtml" />
+    <Content Include="Views\Board\BoardView.cshtml" />
+    <Content Include="Views\Board\BoardEdit.cshtml" />
+    <Content Include="Views\Board\ThumbBoardList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="resources\font\" />
+    <Folder Include="resources\images\referenceroom\" />
     <Folder Include="Scripts\external\" />
     <Folder Include="Scripts\images\" />
     <Folder Include="Scripts\jquery-ui-1.9.2.custom\" />
@@ -351,7 +517,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
@@ -359,6 +527,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Biz\DooSan.BrandCenter.Biz.Boards\DooSan.BrandCenter.Biz.Boards.csproj">
+      <Project>{EA9EDD36-F7B3-4487-9319-D2C13B4EFB55}</Project>
+      <Name>DooSan.BrandCenter.Biz.Boards</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Framework\DooSan.BrandCenter.FrameWork.Static\DooSan.BrandCenter.FrameWork.Static.csproj">
       <Project>{e972a71a-58ee-4395-ab9f-3bac6cbed04e}</Project>
       <Name>DooSan.BrandCenter.FrameWork.Static</Name>

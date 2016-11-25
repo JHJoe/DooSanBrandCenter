@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>두산 브랜드 센터</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!--[if lt IE 9]>
+<script src="../resources/js/html5shiv.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="../resources/css/common.css" />
+<script type="text/javascript" src="../resources/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="../resources/js/jquery.placeholder.min.js"></script>
+<script type="text/javascript" src="../resources/js/common.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="header">헤더</div>
+	<!-- //header -->
+
+	<div id="container" class="product_apply_view">
+		<div id="lnb_wrap">
+			<h2><span>CI 제작물<br>신청</span></h2>
+			<ul id="lnb">
+				<li class="on"><a href="#none">진행목록</a></li>
+				<li><a href="#none">완료목록</a></li>
+			</ul>
+		</div>
+		<!-- //snb -->
+		<div id="contents">
+			<h3 class="page_title">CI 제작물 신청</h3><!-- page_title -->
+
+			<div class="progress_style_01">
+				<div class="progress_box_01 bg_progress_01 on">
+					<p class="icon_progress_01">신청</p>
+				</div>
+				<div class="progress_box_02 bg_progress_04">
+					<p class="icon_progress_04">검토</p>
+				</div>
+				<div class="progress_box_03 bg_progress_02">
+					<p class="icon_progress_02">결재</p>
+				</div>
+			</div><!--progress_style_01-->
+
+			<div class="btn_wrap">
+				<div class="fl"><a href="#none" class="btn_st">임시저장</a><a href="#none" class="btn_st">결재요청</a><a href="#none" class="btn_st bg_gray">목록</a></div>
+			</div><!-- btn_wrap -->
+			<h4 class="title_type_01">신청내용</h4><!-- title_type_01 -->
+			<div class="table_form_01">
+				<table>
+					<colgroup>
+						<col style="width:120px;" />
+						<col />
+						<col style="width:120px;" />
+						<col />
+					</colgroup> 
+					<thead>
+						<tr>
+							<th scope="col" colspan="4">#000001</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">용도</th>
+							<td colspan="3">
+								<div class="radio_ui">
+									<p><input type="radio" id="use_000001_01" name="use_000001" /><label for="use_000001_01">내부용</label></p>
+									<p><input type="radio" id="use_000001_02" name="use_000001" /><label for="use_000001_02">외부용</label></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" rowspan="2">유형 및 규격</th>
+							<td colspan="3">
+								<div class="radio_ui">
+									<p><input type="radio" id="type_000001_01" name="size" /><label for="type_000001_01">현수막</label></p>
+									<p><input type="radio" id="type_000001_02" name="size" /><label for="type_000001_02">배너</label></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" class="td_type_size">
+								<div>
+									<div class="select_ui_box">
+										<select class="select_ui" style="width:165px">
+											<option>소 500 x 3,000</option>
+											<option>중 900 x 5,000</option>
+											<option>대 1,500 x 8,000</option>
+											<option>이 외 비규격 처리</option>
+										</select>
+									</div>
+									<div class="select_ui_box">
+										<select class="select_ui" style="width:165px">
+											<option>CASE 선택</option>
+										</select>
+									</div>
+									<div class="adjust_size">→ 길이조정 : 중 900 * <input type="text" class="inp_txt" style="width:86px" /><a href="#none" class="btn_st">프리뷰 적용</a></div>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">제목</th>
+							<td colspan="3"><input type="text" class="inp_txt" style="width:100%;" /></td>
+						</tr>
+						<tr>
+							<th scope="row">사용기간</th>
+							<td><span class="calendar_ui"><input type="text" class="inp_txt" style="width:148px;" /><a href="#none" class="btn_calendar">시작날짜</a></span> ~ 
+								<span class="calendar_ui"><input type="text" class="inp_txt" style="width:148px;" /><a href="#none" class="btn_calendar">종료날짜</a></span>
+							</td>
+							<th scope="row">위치</th>
+							<td><input type="text" class="inp_txt" style="width:100%;" value="두산타워 현관" /></td>
+						</tr>
+						<tr>
+							<th scope="row">수량</th>
+							<td><input type="text" class="inp_txt" style="width:148px;" value="5" /></td>
+							<th scope="row">처리요청기한</th>
+							<td class="td_request_date"><span class="calendar_ui"><input type="text" class="inp_txt" style="width:148px;" /><a href="#none" class="btn_calendar">시작날짜</a></span>
+								<div class="select_ui_box">
+									<select class="select_ui" style="width:118px">
+										<option>09:00</option>
+										<option>10:00</option>
+									</select>
+								</div>
+								<div class="checkbox_ui">
+									<p><input type="checkbox" id="emergency" /><label for="emergency">긴급</label></p>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row" rowspan="3">내용</th>
+							<td colspan="3">
+								<div class="txt_product_content">
+									<em>Headline </em><input type="text" class="inp_txt" value="두산 동반성장 Workshop 및 CP포럼" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<div class="txt_product_content">
+									<em>Headline2 </em><input type="text" class="inp_txt" placeholder="기본텍스트가 들어갑니다." />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<div class="txt_product_content">
+									<em>Footer </em><input type="text" class="inp_txt" placeholder="기본텍스트가 들어갑니다." />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_preview" colspan="4">
+								<div class="preview_wrap">
+									<em class="preview_tit">Preview</em>
+									<div class="preview_prd">
+										<img src="../resources/images/product/@temp_img_product.jpg" alt="" />
+									</div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- table_form_type_01 -->
+
+		</div>
+		<!-- //contents -->
+	</div>
+	<!-- //container -->
+
+	<div id="footer">푸터</div>
+	<!-- //footer -->
+
+</div>
+<!-- //wrap -->
+</body>
+</html>

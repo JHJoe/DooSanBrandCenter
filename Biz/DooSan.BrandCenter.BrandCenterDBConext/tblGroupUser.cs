@@ -15,7 +15,11 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
     public partial class tblGroupUser
     {
         public short GroupUserId { get; set; }
-        public short UserId { get; set; }
+        public string UserId { get; set; }
         public short GroupId { get; set; }
+        public string InputUser { get; set; }
+        public Nullable<System.DateTime> InputDate { get; set; }
+        public string UpdateUser { get; set; }
+        public Nullable<System.DateTime> UpateDate { get; set; }
     }
 }

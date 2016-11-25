@@ -15,7 +15,7 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
     public partial class tblLoginHistory
     {
         public int IDX { get; set; }
-        public string EMPNO { get; set; }
+        public string UserId { get; set; }
         public Nullable<System.DateTime> ACCESS_DATETIME { get; set; }
         public string USER_IP { get; set; }
         public string INPUT_USER { get; set; }

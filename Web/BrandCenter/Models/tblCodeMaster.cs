@@ -27,17 +27,16 @@ namespace BrandCenter.Models
         public string LARG_DIVS { get; set; }
         [Column(Order = 1), System.ComponentModel.DataAnnotations.Key]
         public string SMLL_DIVS { get; set; }
-
+        public string LANGCODE { get; set; }
         public string NAME { get; set; }
         public string NOTE { get; set; }
         public Nullable<bool> MOBILE_YN { get; set; }
-
-        public string SORTORDER { get; set; }
-        
+        public Nullable<byte> SORTORDER { get; set; }
         public string INPUT_USER { get; set; }
         public Nullable<System.DateTime> INPUT_DATE { get; set; }
         public string UPDATE_USER { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
+        public string JOBID { get; set; }
 
     }
 

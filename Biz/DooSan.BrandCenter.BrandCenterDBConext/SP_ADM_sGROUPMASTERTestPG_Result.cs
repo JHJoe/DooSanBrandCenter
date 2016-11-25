@@ -19,7 +19,7 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
         public string Name { get; set; }
         public string Desc { get; set; }
         public string test { get; set; }
-        public string test3 { get; set; }
+        public string test2 { get; set; }
         public Nullable<int> TOTAL_ROW_COUNT { get; set; }
     }
 }

@@ -19,11 +19,13 @@ namespace DooSan.BrandCenter.BrandCenterDBConext
         public string NAME { get; set; }
         public string NOTE { get; set; }
         public Nullable<bool> MOBILE_YN { get; set; }
+        public Nullable<byte> SORTORDER { get; set; }
         public string INPUT_USER { get; set; }
         public Nullable<System.DateTime> INPUT_DATE { get; set; }
         public string UPDATE_USER { get; set; }
         public Nullable<System.DateTime> UPDATE_DATE { get; set; }
-        public Nullable<byte> SORTORDER { get; set; }
         public string JOBID { get; set; }
+        public string LANGCODE { get; set; }
+        public string CODE { get; set; }
     }
 }

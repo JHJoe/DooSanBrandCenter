@@ -9,7 +9,13 @@ using System.Data.SqlClient;
 
 namespace BrandCenter.Migrations
 {
-
+    internal sealed class Configuration : DbMigrationsConfiguration<DAL.DefaultContext>
+    {
+        public Configuration()
+        {
+            AutomaticMigrationsEnabled = false;
+        }
+    }
     public class DisableConfiguration : DbConfiguration
     {
         public DisableConfiguration()

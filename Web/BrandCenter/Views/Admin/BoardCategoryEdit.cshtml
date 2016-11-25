@@ -1,0 +1,238 @@
+﻿@using DooSan.BrandCenter.Biz.Boards.Models
+@model VM_BoardCategory
+@{
+    ViewBag.Title = "BoardCategoryEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts {
+    <script src="~/Scripts/Ajax.common.js"></script>
+    <script src="~/Scripts/Ajax.validate.v01.js"></script>
+    <script type="text/javascript">
+    var AjaxBC = {};
+
+    AjaxBC.callPartial = function (params) {
+        var helper = new BreandCenterHelper();
+        var url = params.Url;
+
+        helper.DoAjaxAsync(url, params, AjaxBC.callback, AjaxBC.errorFunc);
+    }
+
+    AjaxBC.callback = function (e) {
+        if (e == null)
+            return;
+
+        if (e.RTN == "Y") {
+            alert("저장되었습니다");
+            location.href = "/Admin/BoardCategoryList";
+        }
+        else {
+            alert("[Error] " + e.RTN + " [Message] : " + e.MESSAGE);
+        }
+    }
+
+    AjaxBC.errorFunc = function (e) {
+        var a = 0;
+        alert("Error : " + e);
+    }
+
+$(document).ready(function () {
+    $('#btnSave').on('click', function () {
+        var params = {};
+
+        if (!$("#BOARD_NAME").validate("게시판명", true, { maxLength:50})) { return false; }
+        if (!$("#BOARD_ORDER").validate("순서조정", true, { numeric: true, minLength: 0, maxLength: 3 })) { return false; }
+
+        params.Url = "/Admin/BoardCategoryEdit";
+        params.CATEGORY_IDX = @Model.BoardCategory.CATEGORY_IDX;
+        params.TYPE = $(":input:radio[name=TYPE]:checked").val();
+        params.BOARD_NAME = $("#BOARD_NAME").val();
+        params.BOARD_ORDER = $("#BOARD_ORDER").val();
+        params.COMMENT_YN = $(":input:radio[name=COMMENT_YN]:checked").val();
+        params.MOVIE_YN = $(":input:radio[name=MOVIE_YN]:checked").val();
+        params.USE_YN = $(":input:radio[name=USE_YN]:checked").val();
+        params.BS_YN = $(":input:radio[name=BS_YN]:checked").val();
+        params.WRITE_YN = $(":input:radio[name=WRITE_YN]:checked").val();
+
+        AjaxBC.callPartial(params);
+    });
+    $('#btnDel').on('click', function () {
+        var params = {};
+
+        if (confirm("삭제하시겠습니까??") == true) {    //확인
+
+            params.Url = "/Admin/BoardCategoryDel";
+            params.CATEGORY_IDX = @Model.BoardCategory.CATEGORY_IDX;
+
+            AjaxBC.callPartial(params);
+        } else {   //취소
+            return;
+        }
+    });
+    $('#btnList').on('click', function () {
+        location.href = "/Admin/BoardCategoryList";
+    });
+});
+    </script>
+}
+<div id="contents" class="board_admin_modify">
+    <h3 class="page_title">게시판 관리</h3>
+
+    <div class="btn_wrap">
+        <div class="fl">
+            <a style="cursor:pointer" class="btn_st" id="btnSave">저장</a>
+            <a style="cursor:pointer" class="btn_st" id="btnDel">삭제</a>
+            <a style="cursor:pointer" class="btn_st bg_gray" id="btnList">목록</a>
+        </div>
+    </div><!--btn_wrap-->
+
+    <div class="table_form_02">
+        <table>
+            <colgroup>
+                <col style="width:120px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th scope="row">타입</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("06")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                          "TYPE",
+                                          code.CODE,
+                                          code.CODE.Equals(Model.BoardCategory.TYPE) ? true : false,
+                                          new { @id = code.NAME }
+                                      )
+                                    @Html.Label(code.NAME)
+                                </p>
+                            }
+                            @*<p><input type="radio" id="radio01" name="type" checked="checked" /><label for="radio01">Thumbnail</label></p>
+                            <p><input type="radio" id="radio02" name="type" /><label for="radio02">List</label></p>*@
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">글쓰기권한여부</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("18")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                         "WRITE_YN",
+                                         code.NAME,
+                                         code.NAME.Equals(Model.BoardCategory.WRITE_YN) ? true : false,
+                                         new { @id = "WRITE_YN" + code.NAME }
+                                     )
+                                    @Html.Label("WRITE_YN" + code.NAME, code.NOTE)
+                                </p>
+                            }
+                            @*<p><input type="radio" id="comment01" name="comment" checked="checked" /><label for="comment01">사용</label></p>
+                    <p><input type="radio" id="comment02" name="comment" /><label for="comment02">사용안함</label></p>*@
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">게시판명</th>
+                    <td>
+                        @Html.TextBox("BOARD_NAME", Model.BoardCategory.BOARD_NAME, new { @class = "inp_txt", @style = "width:100%;" })
+                        @*<input type="text" class="inp_txt" style="width:100%;" value="CI바로다운로드" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">순서조정</th>
+                    <td>
+                        @Html.TextBox("BOARD_ORDER", Model.BoardCategory.BOARD_ORDER, new { @class = "inp_txt", @style = "width:100px;" })
+                        @*<input type="text" class="inp_txt" style="width:100px;" value="6" />*@
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">댓글여부</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("08")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                         "COMMENT_YN",
+                                         code.NAME,
+                                         code.NAME.Equals(Model.BoardCategory.COMMENT_YN) ? true : false,
+                                         new { @id = "COMMENT_YN" + code.NAME }
+                                     )
+                                    @Html.Label("COMMENT_YN" + code.NAME, code.NOTE)
+                                </p>
+                            }
+                            @*<p><input type="radio" id="comment01" name="comment" checked="checked" /><label for="comment01">사용</label></p>
+                            <p><input type="radio" id="comment02" name="comment" /><label for="comment02">사용안함</label></p>*@
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">동영상여부</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("08")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                         "MOVIE_YN",
+                                         code.NAME,
+                                         code.NAME.Equals(Model.BoardCategory.MOVIE_YN) ? true : false,
+                                         new { @id = "MOVIE_YN" + code.NAME }
+                                     )
+                                    @Html.Label("MOVIE_YN" + code.NAME, code.NOTE)
+                                </p>
+                            }
+                            @*<p><input type="radio" id="video01" name="video" checked="checked" /><label for="video01">사용</label></p>
+                            <p><input type="radio" id="video02" name="video" /><label for="video02">사용안함</label></p>*@
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">게시판사용여부</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("08")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                         "USE_YN",
+                                         code.NAME,
+                                         code.NAME.Equals(Model.BoardCategory.USE_YN) ? true : false,
+                                         new { @id = "USE_YN" + code.NAME }
+                                     )
+                                    @Html.Label("USE_YN" + code.NAME, code.NOTE)
+                                </p>
+                            }
+                            @*<p><input type="radio" id="use01" name="use" checked="checked" /><label for="use01">사용</label></p>
+                            <p><input type="radio" id="use02" name="use" /><label for="use02">사용안함</label></p>*@
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">메인노출기능 사용여부</th>
+                    <td>
+                        <div class="radio_ui">
+                            @foreach (ComCode code in Model.ComCodes.Where(w => w.LARG_DIVS.Equals("08")))
+                            {
+                                <p>
+                                    @Html.RadioButton(
+                                         "BS_YN",
+                                         code.NAME,
+                                         code.NAME.Equals(Model.BoardCategory.BS_YN) ? true : false,
+                                         new { @id = "BS_YN" + code.NAME }
+                                     )
+                                    @Html.Label("BS_YN" + code.NAME, code.NOTE)
+                                </p>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

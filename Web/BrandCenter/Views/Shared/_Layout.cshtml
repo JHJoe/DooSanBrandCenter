@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - 내 ASP.NET 응용 프로그램</title>
-    @Styles.Render("~/Content/css")
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>두산 브랜드 센터 - @ViewBag.Title</title>
+    @Styles.Render("~/Content/BrandCentercss")
     @Scripts.Render("~/bundles/modernizr")
     <script type="text/javascript">
 
@@ -24,50 +26,116 @@
     @Scripts.Render("~/bundles/Common")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("응용 프로그램 이름", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("홈", "Index", "Home")</li>
-                    <li>@Html.ActionLink("정보", "About", "Home")</li>
-                    <li>@Html.ActionLink("연락처", "Contact", "Home")</li>
-                </ul>
-                <p class="nav navbar-text navbar-right">안녕하세요, @User.Identity.Name!</p>
-                <p>domain username : @User.Identity.Name</p>
-                <p>domain AuthenticationType : @User.Identity.AuthenticationType</p>
-                <p>domain IsAuthenticated : @User.Identity.IsAuthenticated.ToString()</p>
-                <p>
-                domain name :
-                @{
-                    System.Security.Principal.WindowsIdentity wi = System.Security.Principal.WindowsIdentity.GetCurrent();
-                    string[] a = Context.User.Identity.Name.Split('\\');
+    <div id="wrap">
+        <div id="header">
+            <div class="inner">
+                <div id="util_wrap">
+                    <div class="util_select myinfo">
+                        <a href="#none"><span class="name">@BrandCenter.Helper.GetSession.DisplayName</span> <i></i></a>
+                        <ul>
+                            <li><a href="#none" target="_blank">AAA</a></li>
+                            <li><a href="#none" target="_blank">AAA</a></li>
+                        </ul>
+                    </div>
 
-                    string Name = BrandCenter.Helper.GetSession.DisplayName;
-                    <b>@Name</b>
-   // System.DirectoryServices.DirectoryEntry ADEntry = new System.DirectoryServices.DirectoryEntry("WinNT://" + a[0] + "/" + a[1]);
-   //string Name = ADEntry.Properties["FullName"].Value.ToString();
+                    @Html.DropDownList("LoginUserId", new List<SelectListItem>
+                {
+                    new SelectListItem{ Value =@"kr", Text = "한국어" },
+                    new SelectListItem{ Value =@"en", Text = "영문" },
+                    new SelectListItem{ Value =@"zh", Text = "중문" }
+                })
 
-                    @*<b>@Html.Raw(a[1])</b>*@
-                }
-                </p>
+                    <div class="link"><a href="#none" target="_blank">Admin</a></div>
+                </div>
+                <!-- //util_wrap -->
+                <div class="logo_wrap">
+                    <h1 class="logo_brand"><a href="#none"><img src="../resources/images/common/logo_brand.png" alt="DOOSNA" /></a></h1>
+                    <div class="logo"><a href="#none"><img src="../resources/images/common/logo.png" alt="BRAND CENTER" /></a></div>
+                </div>
+                <div id="gnb">
+                    <ul>
+                        <li class="li_01">
+                            <a href="#none">@ViewBag.Title</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#none">진행목록</a></li>
+                                    <li><a href="#none">완료목록</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="li_02">
+                            <a href="#none">CI 승인 시스템</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#none">진행목록</a></li>
+                                    <li><a href="#none">완료목록</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="li_03">
+                            <a href="#none">가이드라인</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#none">CI 가이드라인</a></li>
+                                    <li><a href="#none">브랜드 개발 매뉴얼</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="li_04"><a href="#none">브랜드북</a></li>
+                        <li class="li_05">
+                            <a href="#none">자료실</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#none">Brand Story</a></li>
+                                    <li><a href="#none">두산 브랜드 새소식</a></li>
+                                    <li><a href="#none">공지사항</a></li>
+                                    <li><a href="#none">자주하는 질문</a></li>
+                                    <li><a href="#none">문의하기</a></li>
+                                    <li><a href="#none">CI바로다운로드</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="li_06 link"><a href="#none"><i></i>이미지 Archive</a></li>
+                        <li class="li_07 link"><a href="#none"><i></i>브랜드샵</a></li>
+                    </ul>
+                </div>
+                <!-- //gnb -->
             </div>
         </div>
+        <!-- //header -->
+        <div id="container">
+            <div id="lnb_wrap">
+                <h2><span>CI 제작물<br>신청</span></h2>
+                <ul id="lnb">
+                    <li class="on"><a href="#none">진행목록</a></li>
+                    <li><a href="#none">완료목록</a></li>
+                </ul>
+            </div>
+            <!-- //snb -->
+
+
+
+                @RenderBody()
+
+            <!-- //contents -->
+
+        </div>
+        <!-- //container -->
+        <div id="footer">
+            <div class="inner">
+                <p class="copy">© 2015 Doosan Corporation</p>
+            </div>
+        </div>
+        <!-- //footer -->
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - 내 ASP.NET 응용 프로그램</p>
-        </footer>
-    </div>
+    <!-- //wrap -->
+
+
+
+
+
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
@@ -77,9 +145,12 @@
 
 
     @*<script src="@Url.Content("~/scripts/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js")" type="text/javascript"></script>
-    <link href="@Url.Content("~/scripts/jquery-ui-1.9.2.custom/css/custom-theme/jquery-ui-1.9.2.custom.min.css")" rel="Stylesheet" type="text/css" />*@
+        <link href="@Url.Content("~/scripts/jquery-ui-1.9.2.custom/css/custom-theme/jquery-ui-1.9.2.custom.min.css")" rel="Stylesheet" type="text/css" />*@
 
 
     @RenderSection("scripts", required: false)
 </body>
+
+
+
 </html>

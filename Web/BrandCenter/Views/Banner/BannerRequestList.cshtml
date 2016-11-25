@@ -1,0 +1,91 @@
+﻿@model PagedList.IPagedList<BrandCenter.ViewModels.BannerDoingList>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "CI 제작물 신청";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="contents" class="product_list_user">
+
+    <h3 class="page_title">CI 제작물 신청</h3>
+
+    <div class="progress_link_style_01">
+        <div class="progress_box box_apply">
+            <p class="tit">신청 @Html.ActionLink(((string)ViewBag.RequestCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "01" })</p>
+            <ul>
+                <li>임시저장 @Html.ActionLink(((string)ViewBag.RequestCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "01" })</li>
+            </ul>
+        </div>
+        <div class="progress_box box_approval">
+            <p class="tit">결재 @Html.ActionLink(((string)ViewBag.ArrovalCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "234" })</p>
+            <ul>
+                <li>결재중 @Html.ActionLink(((string)ViewBag.SubmittedCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "02" })</li>
+                <li>결재회수완료 @Html.ActionLink(((string)ViewBag.WithdrawnCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "03" })</li>
+                <li>결재반려완료 @Html.ActionLink(((string)ViewBag.ReturnedCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "04" })</li>
+            </ul>
+        </div>
+        <div class="progress_box box_making last_child">
+            <p class="tit">제작 @Html.ActionLink(((string)ViewBag.ProductionCount), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "5678910111" })</p>
+            <ul>
+                <li>결재완료 @Html.ActionLink(((string)ViewBag.Approved), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "05" })</li>
+                <li>제작신청중 @Html.ActionLink(((string)ViewBag.ProductionRequested), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "06" })</li>
+                <li>제작중 @Html.ActionLink(((string)ViewBag.Productionprogress), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "07" })</li>
+                <li>디자인중 @Html.ActionLink(((string)ViewBag.ReviewRequested), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "08" })</li>
+                <li>디자인요청취소완료 @Html.ActionLink(((string)ViewBag.Canceled), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "09" })</li>
+                <li>디자인중 @Html.ActionLink(((string)ViewBag.Requested), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "10" })</li>
+                <li>디자인완료 @Html.ActionLink(((string)ViewBag.Reviewed), "BannerRequestList", new { sortOrder = "", page = 1, searchString = "11" })</li>
+            </ul>
+        </div>
+    </div><!--progress_link_style_01-->
+    <div class="btn_wrap">
+        <div class="fl"><a href="#none" class="btn_st">신규신청</a></div>
+    </div><!--btn_wrap-->
+    <div class="table_list_01">
+        <table border="0" cellspacing="0" cellpadding="0">
+            <colgroup>
+                <col width="50" />
+                <col width="70" />
+                <col width="70" />
+                <col width="90" />
+                <col width="258" />
+                <col width="180" />
+                <col width="121" />
+                <col width="90" />
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>신청번호</th>
+                    <th>용도</th>
+                    <th>유형</th>
+                    <th>제목</th>
+                    <th>신청자</th>
+                    <th>상태</th>
+                    <th>@Html.ActionLink("날짜" + ((string)ViewBag.SortArrow), "BannerRequestList", new { sortOrder = ViewBag.NameSortParm, page = ViewBag.Page, currentFilter = ViewBag.CurrentFilter })</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td><i class="icon_bulb on"><img src="../resources/images/common/bg_blank.png" alt="alarm" /></i></td>
+                        <td>@Html.DisplayFor(modelItem => item.BannerId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UseName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TypeName)</td>
+                        <td>@Html.ActionLink(item.Title.ToString(), "Banner", new { id = item.BannerId })</td>
+                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.StatusName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.RegisterDate)</td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div><!--table_list_01-->
+    <div class="paginate_ui">
+        @Html.PagedListPager(Model, page => Url.Action("BannerRequestList",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    </div><!--paginate_ui-->
+</div>

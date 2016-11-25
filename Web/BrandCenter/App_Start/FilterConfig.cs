@@ -8,7 +8,8 @@ namespace BrandCenter
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new GlobalHandleErrorAttribute(), 2);
+            filters.Add(new GlobalActionFilterAttribute(), 1);
+            filters.Add(new GlobalHandleErrorAttribute(), 3);
 
             //shared의 에러페이지로 전달
             //filters.Add(new HandleErrorAttribute

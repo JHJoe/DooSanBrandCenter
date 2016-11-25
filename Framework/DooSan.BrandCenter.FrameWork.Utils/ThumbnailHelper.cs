@@ -11,9 +11,6 @@ using System.Drawing.Drawing2D;
 using System.Configuration;
 using System.Diagnostics;
 
-using Microsoft.WindowsAPICodePack.Shell;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using Microsoft.WindowsAPICodePack.Controls;
 
 using System.Windows.Converters; //C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.0\WindowsBase.dll
 using System.Windows.Markup;
@@ -661,18 +658,7 @@ namespace CII.CMS.Framework.Helper
             return new System.Windows.Size(shell.Thumbnail.Bitmap.Size.Width, shell.Thumbnail.Bitmap.Size.Height);
 
         }
-        public static Size GetVideoSize(string videoFullPath)
-        {
-            if (File.Exists(videoFullPath))
-            {
-                ShellFile shellFile = ShellFile.FromFilePath(videoFullPath);
-                int videoWidth = (int)shellFile.Properties.System.Video.FrameWidth.Value;
-                int videoHeight = (int)shellFile.Properties.System.Video.FrameHeight.Value;
-                return new Size(videoWidth, videoHeight);
-            }
-            return Size.Empty;
-        }
-
+      
         private static Bitmap MergeVideoImage(Bitmap SourceImage)
         {
             string thumbpath = "c:\\";

@@ -45,7 +45,7 @@ namespace BrandCenter.App_Start
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
                 //dbconext Ãß°¡
-                kernel.Bind<Models.DefaultContext>().ToSelf().InRequestScope();
+                kernel.Bind<DAL.DefaultContext>().ToSelf().InRequestScope();
 
                 RegisterServices(kernel);
                 return kernel;

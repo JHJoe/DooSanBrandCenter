@@ -10,6 +10,7 @@ using System.Configuration;
 //using Security;
 using DooSan.BrandCenter.FrameWork.Static;
 using BrandCenter.Models;
+using BrandCenter.DAL;
 
 namespace BrandCenter.Helper
 {
@@ -294,14 +295,18 @@ namespace BrandCenter.Helper
             SessionClass UserSession = new SessionClass();
             // test login 을 위해서 싱글에서 다시 가져오는건 피한다.
 
-            UserSession.LoginID = UserId; ; // HttpContext.Current.User.Identity.Name; //ad id
+            UserSession.LoginID = UserId; // HttpContext.Current.User.Identity.Name; //ad id
 
             DefaultContext db = new DefaultContext();
 
             var user = db.tblUser.Find(UserId);
+
             if (user == null)
             {
-                throw new InvalidOperationException("certification error - User not found for : " + UserId);
+                user = db.tblUser.Find(@"DSG\admin");
+                //오픈 이후 아래 코드 적용
+                if (user == null)
+                    throw new InvalidOperationException("certification error - User not found for : " + UserId);
             }
 
 
@@ -315,14 +320,16 @@ namespace BrandCenter.Helper
             UserSession.DisplayName = user.DisplayName;
 
             var groupuser = db.tblGroupUser.Where(u => u.UserId == UserId).SingleOrDefault(); //.ToList();
-            if (groupuser == null)
+            if (groupuser != null && groupuser.GroupId != null)
             {
-                throw new InvalidOperationException("certification error - The users does not belong to a group : " + UserId);
+                UserSession.GROUP_ID = groupuser.GroupId.ToString();
             }
-            UserSession.GROUP_ID= groupuser.GroupId.ToString();
-           
-
-//            UserSession.ADMIN = (dt.Rows[0]["ADMIN_YN"].ToString() == "True" ? true : false);
+            else
+            {
+                UserSession.GROUP_ID = "2"; //일반 사용자
+                //throw new InvalidOperationException("certification error - The users does not belong to a group : " + UserId);
+            }
+            //            UserSession.ADMIN = (dt.Rows[0]["ADMIN_YN"].ToString() == "True" ? true : false);
 
 
             HttpContext.Current.Session["UserSession"] = UserSession;
